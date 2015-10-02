@@ -30,3 +30,13 @@ How does it work?
 - Multiple keys are provided by adding one meta tag per key, using the same name.
 - The Experimental Framework in the browser examines all the meta tags matching the `api-experiments` name, until it finds a valid key to enable a specific experiment.
 - Invalid keys are simply ignored - the Experimental Framework does not report errors if it is unable to interpret the contents of the meta tag.
+  - This allows different key formats to be used across browsers, while web developers use the same meta tag to embed multiple keys
+
+## How do web developers check if an experiment is enabled?
+The Experimental Framework does not expose an API to check if an experiment is enabled.  Instead, web developers can use common feature detection (and fallback) approaches.  For example:
+```js
+if (navigator.coolExperimentalFeature) {
+  navigator.coolExperimentalFeature...
+} else {
+  // Fallback code
+}
