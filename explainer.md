@@ -1,1 +1,32 @@
-Coming soon.
+# Why an Experimental Framework?
+[Doing Science On The Web](https://infrequently.org/2015/08/doing-science-on-the-web/) summarizes the past problems in bringing new features to the web platform.  Briefly, the web needs new features, and iteration yields the best designs and implementations for those features.  However, previous efforts have seen experiments prematurely become de-facto standards, with browser vendors scrambling to implement the features, and web developers coming to rely on these features.  These experimental features became burned-in, and resistant to change (or removal), even though better implementations were identified/available.
+
+One of the root causes was that experimental features were available too widely, and thus usage grew unchecked as a result.  Ideally, it should be easier to expose and iterate on new features, but reliably limit the experimental population.  With a test population of developers committed to providing feedback, and limits in user base size and experiment duration, iteration can happen faster, but without the risk of burn-in.
+
+# What does the Experimental Framework do?
+The design of the framework is a work in progress, for the latest see [the public design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit?usp=sharing).
+
+Briefly, an API experiment will follow this process:
+- A new API is implemented in a browser (i.e. Chrome).
+- The API author publishes a time-limited experiment for this API.
+- Web developers register their origin to participate in the experiment, and receive an API key.
+- Web developers change their origin to embed the API key.
+- Users visit the origin, and the Experimental Framework exposes the new API, but only if a valid key is found.
+
+# What is the API for the Experimental Framework?
+Web developers do not code directly to the Experimental Framework.  The only interaction with the framework is to provide API keys to enable access to experiments.
+
+Web developers embed the provided API key(s) into their web pages using a meta tag:
+
+```html
+<head>
+  <meta name="api-experiments" content="contents of key 1">
+  <meta name="api-experiments" content="contents of key 2">
+  ...
+```
+
+How does it work?
+- The contents of the API keys are opaque, meaning that they must not be edited, encoded, etc. in any way.  The value of an API key should simply be copied into the content attribute of the named meta tag.
+- Multiple keys are provided by adding one meta tag per key, using the same name.
+- The Experimental Framework in the browser examines all the meta tags matching the `api-experiments` name, until it finds a valid key to enable a specific experiment.
+- Invalid keys are simply ignored - the Experimental Framework does not report errors if it is unable to interpret the contents of the meta tag.
