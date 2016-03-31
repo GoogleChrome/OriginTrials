@@ -20,8 +20,8 @@ Web developers embed the provided trial token(s) into their web pages using a me
 
 ```html
 <head>
-  <meta name="origin-trials" content="contents of token 1">
-  <meta name="origin-trials" content="contents of token 2">
+  <meta http-equiv="origin-trial" content="contents of token 1">
+  <meta http-equiv="origin-trial" content="contents of token 2">
   ...
 ```
 
