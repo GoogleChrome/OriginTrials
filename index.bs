@@ -1,0 +1,212 @@
+<pre class=metadata>
+Title: Origin Trials
+Shortname: origintrials
+Level: 1
+Indent: 2
+Group: personal
+Editor: Marijn Kruisselbrink, Google, mek@chromium.org
+Status: ED
+ED: https://jpchase.github.io/ExperimentalFramework/
+Repository: jpchase/ExperimentalFramework
+Abstract: <a biblio data-biblio-type=informative>Doing Science On The Web</a> summarizes the past
+  problems in bringing new features to the web platform.
+  Briefly, the web needs new features, and iteration yields the best designs and implementations for
+  those features.
+  However, previous efforts have seen experiments prematurely become de-facto standards, with
+  browser vendors scrambling to implement the features, and web developers coming to rely on
+  these features.
+  These experimental features became burned-in, and resistant to change (or removal), even though
+  better implementations were identified/available.
+
+  One of the root causes was that experimental features were available too widely, and thus usage
+  grew unchecked as a result.
+  Ideally, it should be easier to expose and iterate on new features, but reliably limit the
+  experimental population.
+  With a test population of developers committed to providing feedback, and limits in user base size
+  and experiment duration, iteration can happen faster, but without the risk of burn-in.
+Boilerplate: omit conformance
+Markup Shorthands: css off, markdown on
+</pre>
+
+<pre class=biblio>
+{
+  "Doing Science On The Web": {
+    "href": "https://infrequently.org/2015/08/doing-science-on-the-web/",
+    "title": "Doing Science On The Web"
+  }
+}
+</pre>
+
+<pre class="link-defaults">
+spec: html
+  type: dfn
+    text: environment settings object
+    text: global object; for: environment settings object
+    text: initialising a new document object
+    text: inserted into a document
+    text: responsible document
+    text: run a worker
+  type: element
+    text: link
+    text: script
+
+spec: dom
+  type: interface
+    text: Document
+
+spec:url
+  type:dfn
+    for:url; text:scheme
+    text: local scheme
+</pre>
+
+<pre class="anchors">
+spec: fetch; urlPrefix: https://fetch.spec.whatwg.org/
+  type: dfn
+    text: response; url: concept-response
+    for: response; urlPrefix: #concept-response-
+      text: header list
+      text: url
+
+spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/
+  urlPrefix: infrastructure.html
+    type: dfn; text: ASCII case-insensitive match; url: ascii-case-insensitive
+  urlPrefix: semantics.html
+    type: element-attr; for: meta; urlPrefix: #attr-meta-
+      text: content
+      text: http-equiv
+
+spec: rfc7230; urlPrefix: https://tools.ietf.org/html/rfc7230
+  type: grammar; url: section-3.2.6
+    text: quoted-string
+    text: token
+</pre>
+
+<h2 id="intro">Introduction</h2>
+
+<em>This section is informative.</em>
+
+<h2 id="model">Model</h2>
+
+A <dfn>trial</dfn> is something that can be enabled or disabled.
+
+Issue: define trial and other terminology better.
+
+A <dfn>trial token</dfn> is a string in a user agent defined format. A <a>trial token</a> is somehow
+associated with a <a>trial</a>.
+
+<h3 id="header">The `Origin-Trial` HTTP Response Header Field</h3>
+
+The <dfn>`Origin-Trial`</dfn> HTTP response header field can be used to deliver <a>trial tokens</a>
+from a server to a client. The header's value is represented by the following
+<a biblio data-biblio-type="normative" lt="rfc5234">ABNF</a>:
+
+<pre dfn-type=grammar link-type=grammar>
+  Origin-Trial = 1#<a>serialized-trial-token</a>
+
+  <dfn>serialized-trial-token</dfn> = <a>token</a> | <a>quoted-string</a>
+</pre>
+
+<div class=example>
+  <pre>
+    <a>Origin-Trial</a>: some-token, some|other|token
+    <a>Origin-Trial</a>: yet_another_token
+  </pre>
+</div>
+
+When the user agent receives a `Origin-Trial` header field, it MUST process it as described in
+[[#integration]].
+
+<h3 id="meta-tag">The <{meta}> element</h3>
+
+A {{Document}} may specify <a>trial tokens</a> via one or more HTML <{meta}> elements whose
+<{meta/http-equiv}> attributes are an <a>ASCII case-insensitive match</a> for the string
+`"Origin-Trial"`. For example:
+
+<div class=example>
+  <pre class="lang-html">
+    &lt;meta http-equiv="Origin-Trial" content="sometoken">
+  </pre>
+</div>
+
+Authors are <em>strongly encouraged</em> to place <{meta}> elements as early in the dcument as
+possible, because tokens in <{meta}> elements are not taken into account for content which precedes
+them. In particular, note that <{script}> executed before the <{meta}> element will not have access
+to <a>trials</a> enabled by tokens in the <{meta}> element.
+
+Issue: Another option would be to not process <{meta}> elements that occur after the first
+<{script}> tag. But that won't be enough, since <{link}> can allow script execution via its
+`load` and `error` events as well, as one example of another way to execute javascript.
+
+Note: Modifications to a <{meta}> element after the element has been parsed will be ignored.
+
+<h2 id="integration">Integration with HTML</h2>
+
+The {{Document}} and {{WorkerGlobalScope}} objects have a <dfn>trial token list</dfn>, which holds
+all the <a>trial tokens</a> which are active fo a given context. This list is empty unless otherwise
+specified.
+
+A <a>trial</a> <var>trial</var> is <dfn lt="enabled trial">enabled</dfn> in a specific
+<var>context</var> if any of the <a>trial tokens</a> in <var>context</var>'s <a>trial token list</a>
+is associated with <var>trial</var>.
+
+<h3 id="initialize-document">Initialize a `Document`'s <a>trial token list</a></h3>
+
+This algorithm should be executed during the <a>initialising a new `Document` object</a> algorithm.
+
+Given a {{Document}} (<var>document</var>) and a <a>response</a> (<var>response</var>), the user
+agent performs the following steps in order to initialize <var>document</var>'s <a>trial token
+list</a>:
+
+1. If <var>response</var>'s <a for=response>url</a>'s <a>scheme</a> is a <a>local scheme</a>:
+
+  Issue: this is about blob URLs, about:blank, and similar. We should define what to do here. It
+  might make sense to inherit tokens from the creating document, similar to how CSP policies etc
+  are inherited.
+
+2. For each <a grammar>serialized-trial-token</a> <var>serializedToken</var> resulting from parsing
+  the <a>Origin-Trial</a> headers in <var>response</var>'s <a>header list</a>:
+
+  1. Add the <a>trial token</a> represented by <var>serializedToken</var> to <var>document</var>'s
+    <a>trial token list</a>.
+
+<h3 id="initialize-worker">Initialize a `WorkerGlobalScope`'s <a>trial token list</a></h3>
+
+This algorithm shuold be executed as part of the <a>run a worker</a> algorithm.
+
+Given a {{WorkerGlobalScope}} (<var>global</var>), <a>response</a> (<var>response</var>) and
+possible {{WorkerGlobalScope}} <var>parentWorker</var> the user agent performs the
+following steps in order to initialize <var>global</var>'s <a>trial token list</a>:
+
+1. If <var>global</var> is a {{DedicatedWorkerGlobalScope}} instance:
+
+  1. If <var>global</var> has a <var>parentWorker</var>, set <var>global</var>'s
+    <a>trial token list</a> to a copy of <var>parentWorker</var>'s <a>trial token list</a>.
+
+  2. Else set <var>global</var>'s <a>trial token list</a> to a copy of <var>global</var>'s
+    <a>responsible document</a>'s <a>trial token list</a>.
+
+2. Else:
+
+  1. For each <a grammar>serialized-trial-token</a> <var>serializedToken</var> resulting from
+    parsing the <a>Origin-Trial</a> headers in <var>response</var>'s <a>header list</a>:
+
+    1. Add the <a>trial token</a> represented by <var>serializedToken</var> to <var>global</var>'s
+      <a>trial token list</a>.
+
+Issue: does this need special handling for about:blank, blob: urls etc?
+
+<h3 id="meta-processing">Processing of a <{meta}> tag</h3>
+
+When a <{meta}> element is <a>inserted into a document</a>, if its <{meta/http-equiv}> attribute
+is present and represents a `Origin-Trial`, the user agent must run the following algorithm:
+
+1. If the <{meta}> element is not a child of a <{head}> element, abort these steps.
+
+2. If the <{meta}> element has no <{meta/content}> attribute, abort these steps.
+
+3. If the <{meta}> element was created by script, abort these step.
+
+  Issue: need to define what "created by script" means, and what is/isn't supported
+
+4. Add the value of the <{meta/content}> attribute to the {{Document}}'s <a>trial token list</a>.
