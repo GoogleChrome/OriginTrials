@@ -6,8 +6,8 @@ Indent: 2
 Group: personal
 Editor: Marijn Kruisselbrink, Google, mek@chromium.org
 Status: ED
-ED: https://jpchase.github.io/ExperimentalFramework/
-Repository: jpchase/ExperimentalFramework
+ED: https://jpchase.github.io/OriginTrials/
+Repository: jpchase/OriginTrials
 Abstract: <a biblio data-biblio-type=informative>Doing Science On The Web</a> summarizes the past
   problems in bringing new features to the web platform.
   Briefly, the web needs new features, and iteration yields the best designs and implementations for
@@ -143,7 +143,7 @@ Note: Modifications to a <{meta}> element after the element has been parsed will
 <h2 id="integration">Integration with HTML</h2>
 
 The {{Document}} and {{WorkerGlobalScope}} objects have a <dfn>trial token list</dfn>, which holds
-all the <a>trial tokens</a> which are active fo a given context. This list is empty unless otherwise
+all the <a>trial tokens</a> which are active for a given context. This list is empty unless otherwise
 specified.
 
 A <a>trial</a> <var>trial</var> is <dfn lt="enabled trial">enabled</dfn> in a specific

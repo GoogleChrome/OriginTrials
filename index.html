@@ -1398,13 +1398,13 @@ Possible extra rowspan handling
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Origin Trials</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-04-05">5 April 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2016-05-03">3 May 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://jpchase.github.io/ExperimentalFramework/">https://jpchase.github.io/ExperimentalFramework/</a>
+     <dd><a class="u-url" href="https://jpchase.github.io/OriginTrials/">https://jpchase.github.io/OriginTrials/</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/jpchase/ExperimentalFramework/issues/">GitHub</a>
+     <dd><a href="https://github.com/jpchase/OriginTrials/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mek@chromium.org">Marijn Kruisselbrink</a> (<span class="p-org org">Google</span>)
@@ -1413,7 +1413,7 @@ Possible extra rowspan handling
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="http://creativecommons.org/publicdomain/zero/1.0/" rel="license"><img alt="CC0" src="https://licensebuttons.net/p/zero/1.0/80x15.png"></a> To the extent possible under law, the editors have waived all copyright
 and related or neighboring rights to this work.
-In addition, as of 5 April 2016,
+In addition, as of 3 May 2016,
 the editors have made this specification available under the <a href="http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0" rel="license">Open Web Foundation Agreement Version 1.0</a>,
 which is available at http://www.openwebfoundation.org/legal/the-owf-1-0-agreements/owfa-1-0.
 Parts of this work may be from another specification document.  If so, those parts are instead covered by the license of that specification document. </p>
@@ -1507,7 +1507,7 @@ to <a data-link-type="dfn" href="#trial" id="ref-for-trial-2">trials</a> enabled
    <p class="note" role="note">Note: Modifications to a <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta">meta</a></code> element after the element has been parsed will be ignored.</p>
    <h2 class="heading settled" data-level="3" id="integration"><span class="secno">3. </span><span class="content">Integration with HTML</span><a class="self-link" href="#integration"></a></h2>
    <p>The <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document">Document</a></code> and <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope">WorkerGlobalScope</a></code> objects have a <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="trial token list" data-noexport="" id="trial-token-list">trial token list<span class="dfn-panel" data-deco=""><b><a href="#trial-token-list">#trial-token-list</a></b><b>Referenced in:</b><span><a href="#ref-for-trial-token-list-1">3. Integration with HTML</a></span><span><a href="#ref-for-trial-token-list-2">3.1. Initialize a Document's trial token list</a> <a href="#ref-for-trial-token-list-3">(2)</a> <a href="#ref-for-trial-token-list-4">(3)</a></span><span><a href="#ref-for-trial-token-list-5">3.2. Initialize a WorkerGlobalScope's trial token list</a> <a href="#ref-for-trial-token-list-6">(2)</a> <a href="#ref-for-trial-token-list-7">(3)</a> <a href="#ref-for-trial-token-list-8">(4)</a> <a href="#ref-for-trial-token-list-9">(5)</a> <a href="#ref-for-trial-token-list-10">(6)</a> <a href="#ref-for-trial-token-list-11">(7)</a></span><span><a href="#ref-for-trial-token-list-12">3.3. Processing of a meta tag</a></span></span></dfn>, which holds
-all the <a data-link-type="dfn" href="#trial-token" id="ref-for-trial-token-4">trial tokens</a> which are active fo a given context. This list is empty unless otherwise
+all the <a data-link-type="dfn" href="#trial-token" id="ref-for-trial-token-4">trial tokens</a> which are active for a given context. This list is empty unless otherwise
 specified.</p>
    <p>A <a data-link-type="dfn" href="#trial" id="ref-for-trial-3">trial</a> <var>trial</var> is <dfn data-dfn-type="dfn" data-lt="enabled trial" data-noexport="" id="enabled-trial">enabled<a class="self-link" href="#enabled-trial"></a></dfn> in a specific <var>context</var> if any of the <a data-link-type="dfn" href="#trial-token" id="ref-for-trial-token-5">trial tokens</a> in <var>context</var>’s <a data-link-type="dfn" href="#trial-token-list" id="ref-for-trial-token-list-1">trial token list</a> is associated with <var>trial</var>.</p>
    <h3 class="heading settled" data-level="3.1" id="initialize-document"><span class="secno">3.1. </span><span class="content">Initialize a <code>Document</code>'s <a data-link-type="dfn" href="#trial-token-list" id="ref-for-trial-token-list-2">trial token list</a></span><a class="self-link" href="#initialize-document"></a></h3>
