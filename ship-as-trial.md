@@ -54,4 +54,18 @@ Similarly, if you need to know in the browser process whether a feature should b
 If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. To generate your own tokens, use [/tools/origin_trials/generate_token.py](https://code.google.com/p/chromium/codesearch#chromium/src/tools/origin_trials/generate_token.py).
 You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test.
 
+## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
+
+Stretch goals (for Chrome M52):
+- [Revoking Tokens](https://code.google.com/p/chromium/issues/detail?id=582042)
+- Revoking entire features
+
+What we're not going to have (for Chrome M52):
+- [iOS support](https://code.google.com/p/chromium/issues/detail?id=582056)
+- [Extra data attached to tokens](https://code.google.com/p/chromium/issues/detail?id=582060)
+- Scoping tokens to a path
+- Origin trials in compositor workers
+- Persistent origin trials in cached service worker scripts
+
+To follow the most up-to-date progress and plans, filter in crbug.com for “[component:Internals>OriginTrials](https://bugs.chromium.org/p/chromium/issues/list?q=component:Internals%3EOriginTrials)”.
