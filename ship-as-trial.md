@@ -2,7 +2,7 @@
 
 For the full context on origin trials, please see the [explainer](explainer.md). Here, we describe what is involved in shipping a new browser feature for experimentation in an origin trial.
 
-The process and functionality below is targetting the Chrome M52 milestone.
+The process and functionality below is targetting the _Chrome M52_ milestone.
 
 ## What is provided by the Origin Trials framework in Chrome?
 
@@ -22,7 +22,7 @@ If an experiment gets out of hand (*way* too popular to be an experiment anymore
 
 First, origin trials are integrated into the [launch process for new web platform features](http://www.chromium.org/blink#launch-process). You should be following that overall process (maybe you ended up here from that page).
 
-To ship as an origin trial, your feature must meet the following eligibity criteria:
+To ship as an origin trial, your feature must meet the following eligibility criteria:
 - Be approved by the internal Chrome launch review process
  - Users may be exposed to your feature without opting in, so the appropriate measures must be taken for privacy, security, etc.
 - Implement a kill switch that allows your feature to be disabled via Finch
@@ -33,11 +33,14 @@ To expose your feature via the origin trials framework, you’ll need to configu
 
 Once configured, there are two mechanisms to gate access to your feature behind an origin trial. You can use either mechanism, or both, as appropriate to your feature implementation.
 
-1. A native C++ method that you can call in Blink code at runtime to expose your feature:
-    ```
-    bool OriginTrials::myFeatureEnabled()
-    ```
-2. An IDL attribute \[OriginTrialEnabled\] that you can use to automatically expose and hide JavaScript methods/attributes/objects.
+1. A native C++ method that you can call in Blink code at runtime to expose your feature: `bool OriginTrials::myFeatureEnabled()`
+2. An IDL attribute [\[OriginTrialEnabled\]](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/bindings/IDLExtendedAttributes.md#OriginTrialEnabled-i_m_a_c) that you can use to automatically expose and hide JavaScript methods/attributes/objects. This attribute works very similar to \[RuntimeEnabled\].
+```
+[OriginTrialEnabled=MyFeature]
+partial interface Navigator {
+     readonly attribute MyFeatureManager myFeature;
+}
+```
 
 **NOTE:** Your feature implementation must not persist the result of the enabled check. Your code should simply call `OriginTrials::myFeatureEnabled()` as often as necessary to gate access to your feature.
   
@@ -48,7 +51,7 @@ What you can't do, because of the nature of these Origin Trials, is know at eith
 Similarly, if you need to know in the browser process whether a feature should be enabled, then you will have to either have the renderer inform it at runtime, or else just assume that it's always enabled, and gate access to the feature from the renderer.
 
 ### Testing
-If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. There is a script in /tools/ to help you do that:
+If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. To generate your own tokens, use [/tools/origin_trials/generate_token.py](https://code.google.com/p/chromium/codesearch#chromium/src/tools/origin_trials/generate_token.py).
 You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test.
 
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
