@@ -29,7 +29,7 @@ We’re currently working on building a console where you can generate these tok
 2. Will all of these experiments ship eventually?
   - These are only experiments and there is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
 3. What happens if a large site such as a Google service starts depending on an experimental feature?
-  - Origin trials have a built-in safeguard that automatically disables an experimental feature globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by Chrome Status) may be deprecated. 
+  - Origin trials have a built-in safeguard that automatically disables an experimental feature globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity)) may be deprecated. 
 4. Isn’t this just vendor prefixing all over again?
   - This topic has been explored in depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa#.94pf1lwmp). A couple of key differences include:
     - These features automatically stop working before they become too broadly adopted.
