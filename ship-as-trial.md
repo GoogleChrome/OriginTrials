@@ -24,9 +24,13 @@ First, origin trials are integrated into the [launch process for new web platfor
 
 To ship as an origin trial, your feature must meet the following eligibility criteria:
 - Be approved by the internal Chrome launch review process
- - Users may be exposed to your feature without opting in, so the appropriate measures must be taken for privacy, security, etc.
+  - Users may be exposed to your feature without opting in, so the appropriate measures must be taken for privacy, security, etc.
 - Implement a kill switch that allows your feature to be disabled via Finch
- - This can use the existing functionality in PermissionContextBase or base::FeatureList, or be a feature-specific implementation.
+  - This can use the existing functionality in PermissionContextBase or base::FeatureList, or be a feature-specific implementation.
+- Record usage of the feature using [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)
+  - The feature must have a corresponding entry in the enum [UseCounter::Feature](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h&q=%22enum%20Feature%22&sq=package:chromium&type=cs&l=65).
+  - For any JavaScript-exposed API, usage can be recorded easily via one of the [\[Measure\]](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/bindings/IDLExtendedAttributes.md#Measure-m_a_c) or [\[MeasureAs\]](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/bindings/IDLExtendedAttributes.md#MeasureAs-m_a_c) IDL attributes.
+  - If not exposed via IDL, the appropriate `UseCounter::count*()` method can be used directly from your feature implementation.
 
 ### Integration with the framework
 To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development).
