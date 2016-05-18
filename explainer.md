@@ -11,7 +11,7 @@ This works great in an environment where you can cycle through the process many 
 - You are not the target user of the interface or abstraction
 - The target user is very different from you
 - The target users aren’t willing or able to try it out in actual usage
-- Changing the interface or abstraction is difficult or costly, once shipped 
+- Changing the interface or abstraction is difficult or costly, once shipped
 
 Interestingly, the web is approximately a worst case example of all of the above:
 - Browser engineers are designing abstractions and interfaces for web developers, not for browser engineers
@@ -56,3 +56,65 @@ And when considering those additional risks we were worried about:
 This design also has the additional benefit that developers cannot simply copy paste code using experimental APIs from Stack Overflow as was possible with prefixes.
 
 To summarize this document so far: in order to design good features on the web, the web developer feedback needs to be the most important voice in the standards process. We have been very careful in designing origin trials and are tentatively declaring we believe it is safe way to make that possible.
+
+## High-level design of the solution
+
+Earlier, we outlined two key aspects of the origin trials solution. First, using registration to establish a communication channel with developers. Second, using automated usage limits to prevent burn-in of experimental features and maintain flexibility in implementation. Here, we describe the high-level design of the solution. For more details on the design, see [Origin Trials Framework Design Outline](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/).
+
+The high-level process for experimental features is:
+- An experimental feature is implemented in Chrome.
+  - This follows the established [launch process](http://www.chromium.org/blink#launch-process) for web platform features, with the addition of an "Intent to Experiment" and other steps for experiments.
+  - Feature authors (i.e. browser engineers) can refer to [this guide](ship-as-trial.md) for more details.
+- The feature author publishes an origin trial (i.e. experiment) for this feature. The trial must include an end date, to limit the duration.
+  - Currently, this is a manual process where a feature is made available for registrations
+  - We expect to automate this process, as part of a self-service developer console
+- Web developers register their origin to participate in the trial, and receive a trial token.
+  - Registrations will be collected via a Google form.
+  - More details are available in the [developer guide](developer-guide.md).
+- Web developers change their origin to embed the trial token.
+  - The token must be embedded in their origin (via \<meta\> tag or HTTP header)
+  - Again, details are available in the [developer guide](developer-guide.md).
+- Users visit the registered origin, and the Origin Trials Framework exposes the new feature, but only if a valid trial token is found.
+  - In Chrome, the framework will extract any token found in the page. The token is checked for origin, feature and expiry date. Only if all the token data is valid, the framework will then allow the feature to be exposed via JavaScript.
+- The end date of the trial passes, all issued trial tokens expire, and the framework automatically prevents further access to the feature.
+- Feedback on the feature is requested from all registered developers
+  - Feedback may also be solicited earlier, during the trial.
+  - Developers must provide feedback, or will not be able to register for new origin trials.
+
+### Trial tokens
+
+After considering other mechanisms, we settled on using trial tokens to provide limited access to experimental features. We wanted a mechanism that provided a few important capabilities:
+- Features are disabled/off by default, but can be enabled/turned on (almost) immediately after a developer registers their origin
+- Features can be enabled with minimal performance impact, and without internet connectivity for every page load
+- Developers can control which individual pages have access to a feature, and/or which users have access to a feature
+
+Trial tokens are self-contained, verifiable blobs of text, which can safely be embedded in web pages. Each token is issued for a specific combination of origin and feature. It is not possible for a developer to use one token to enable multiple experimental features on their origin. As well, a token issued for a given origin and feature cannot be used to enable that same feature on a different origin.
+
+### Monitoring and limiting usage
+
+As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.03% of all Chrome page loads (i.e. same as Chrome’s deprecation threshold). In addition, usage of a single feature, by a single origin, cannot exceed 0.01% of all Chrome page loads.
+
+To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature. Depending the usage pattern for features, it may also be feasible to detect when features are approaching, but haven't exceeded, the limit.
+
+When the usage limits are exceeded for a feature, the feature will be disabled for future use. As features are enabled by self-contained trial tokens, a separate mechanism is needed to revoke/override the access provided by otherwise valid tokens. There are a number of potential mechanisms to turn off features:
+- Feature-implemented switches for disabling a specific feature.
+- Origin trials infrastructure to revoke access for features and/or tokens (partially
+  implemented).
+- Replace the token signing key (effectively invalidates all tokens signed with the previous
+  key).
+- Disable the entire Origin Trials framework (disables all features exposed via
+  trials).
+
+All the above mechanisms make use of the existing infrastructure in Chrome to push out information to installed browsers. For the feature-implemented switches, this makes use of the [field trials](https://code.google.com/p/chromium/codesearch#chromium/src/base/metrics/field_trial.h) infrastructure. For the origin trials revocation lists/signing key replacement, this makes use of the infrastructure for component updates.
+
+Different mechanisms will be used to disable a feature, depending on how the
+usage limits were exceeded. Initially, the feature-implemented switch will most
+commonly be used to disable the specific overused feature. 
+
+## FAQ
+
+1. Can one large website prevent anyone from accessing an origin trial (either maliciously or inadvertently)?
+  - We have a system to monitor and limit total usage of each feature. This same system constrains usage for each origin to an even smaller limit (i.e. 0.01% of all page loads). This is to prevent a single origin from disabling the experiment for all other origins which are safely within the usage limits. Thus, only the origin that exceeds the smaller per-site limits would be disabled for further use.
+
+2. What is the structure of trial tokens?
+  - The properties and structure of trials tokens are discussed in detail in the [design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit#bookmark=id.jtr9rupl4osm).
