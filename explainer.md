@@ -120,11 +120,35 @@ Beyond surveys, we hope that developers will participate in the community around
 
 ## FAQ
 
-1. Can one large website prevent anyone from accessing an origin trial (either maliciously or inadvertently)?
-  - We have a system to monitor and limit total usage of each feature. This same system constrains usage for each origin to an even smaller limit (i.e. 0.01% of all page loads). This is to prevent a single origin from disabling the experiment for all other origins which are safely within the usage limits. Thus, only the origin that exceeds the smaller per-site limits would be disabled for further use.
+*Why does this project exist?*
+  - Sometimes we, the web standards community, spend years designing an API that turns out to be fundamentally flawed and then have to go back to the drawing board for a few more years before we can ship the right thing. We believe letting developers safely try experiments in production early will allow us to realize these mistakes earlier, increasing our ability to learn and ship the right things sooner.
 
-2. What is the structure of trial tokens?
+*How can I find out about new experiments when they become available?*
+  - An update will be posted to developers.google.com/web/updates for each new API that becomes available.
+
+*Will all of these experiments ship eventually?*
+  - Remember that these are only experiments. There is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
+
+*What happens if a large site such as a Google service starts depending on an experimental API?*
+  - Origin trials have a built-in safeguard that automatically disables an experimental API globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by Chrome Status) may be deprecated. 
+
+*Isn’t this just vendor prefixing all over again?*
+  - This topic has been explored in great depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa). A couple of key differences include the fact that these features automatically stop working before they become too broadly adopted and that developers cannot simply copy-paste code using an experimental API from the web since they would need to go through the experimental API signup process and accept that the feature is going to shortly stop working.
+
+*Does this change impact how we think about security or privacy on the web?*
+  - No, these experimental APIs will all be approved as safe by Chrome’s privacy and security teams.
+
+*Is there any restriction on which websites can sign up to use experimental APIs?*
+  - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.03% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for use on very large production sites such as the Google home page.
+
+*Is there any review process for signing up a website to access an experimental API?*
+  - No. We do not review domain content before generating a token. The current delay in receiving a token is only due to some automatic processes not yet being available, but we hope to resolve that later this year.
+
+*Can one large website prevent anyone from accessing an origin trial (either maliciously or inadvertently)?*
+  - We automatically disable any experiment that becomes used too broadly to prevent features from being used in production such that we wouldn't feel OK about breaking them. This does make it possible for a site to maliciously or inadvertently disable an experiment although in that case no developers will be depending on the feature in production since it is experimental so the harm is mitigated.
+
+*What is the structure of trial tokens?*
   - The properties and structure of trials tokens are discussed in detail in the [design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit#bookmark=id.jtr9rupl4osm).
 
-3. What happens to the developer feedback collected in surveys?
+*What happens to the developer feedback collected in surveys?*
   - All data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
