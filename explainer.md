@@ -151,4 +151,4 @@ Beyond surveys, we hope that developers will participate in the community around
   - The properties and structure of trials tokens are discussed in detail in the [design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit#bookmark=id.jtr9rupl4osm).
 
 *What happens to the developer feedback collected in surveys?*
-  - How feedback is collected and shared is outlined [above](https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md#collecting-developer-feedback) Note that all data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
+  - How feedback is collected and shared is outlined [above](https://github.com/jpchase/OriginTrials/blob/gh-pages/explainer.md#collecting-developer-feedback). Note that all data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
