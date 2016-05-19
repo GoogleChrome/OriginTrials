@@ -92,24 +92,31 @@ Trial tokens are self-contained, verifiable blobs of text, which can safely be e
 
 ### Monitoring and limiting usage
 
-As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.03% of all Chrome page loads (i.e. same as Chrome’s deprecation threshold).
+As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.03% of all Chrome page loads (i.e. same as Chrome’s deprecation threshold). In addition, usage of a single feature, by a single origin, cannot exceed 0.01% of all Chrome page loads.
 
-To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature.
+To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature. Depending the usage pattern for features, it may also be feasible to detect when features are approaching, but haven't exceeded, the limit.
 
-When the usage limits are exceeded for a feature, the feature will be disabled for future use. As features are enabled by self-contained trial tokens, a separate remotely-controllable mechanism is needed to revoke the access provided by otherwise valid tokens. In general we intend to use:
-- Feature-implemented Finch switches, that we require them to implement, or
-- If the API is permissioned, the global permissions kill switch which effectively denies permission to access the new API
-
-There are further steps we can take if there is some unforseen issue with the above kill switches, for example:
-- Remotely replace the token signing key on clients (effectively invalidates all tokens signed with the previous
+When the usage limits are exceeded for a feature, the feature will be disabled for future use. As features are enabled by self-contained trial tokens, a separate mechanism is needed to revoke/override the access provided by otherwise valid tokens. There are a number of potential mechanisms to turn off features:
+- Feature-implemented switches for disabling a specific feature.
+- Origin trials infrastructure to revoke access for features and/or tokens (partially
+  implemented).
+- Replace the token signing key (effectively invalidates all tokens signed with the previous
   key).
-- Remotely disable the entire Origin Trials framework (disables all features exposed via trials).
+- Disable the entire Origin Trials framework (disables all features exposed via
+  trials).
 
 All the above mechanisms make use of the existing infrastructure in Chrome to push out information to installed browsers. For the feature-implemented switches, this makes use of the [field trials](https://code.google.com/p/chromium/codesearch#chromium/src/base/metrics/field_trial.h) infrastructure. For the origin trials revocation lists/signing key replacement, this makes use of the infrastructure for component updates.
 
 Different mechanisms will be used to disable a feature, depending on how the
 usage limits were exceeded. Initially, the feature-implemented switch will most
 commonly be used to disable the specific overused feature. 
+
+### Collecting developer feedback
+One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers.
+
+The primary means for collecting feedback will be structured surveys at the end of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature, collected via a Google form. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
+
+Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature. 
 
 ## FAQ
 
@@ -118,3 +125,6 @@ commonly be used to disable the specific overused feature.
 
 2. What is the structure of trial tokens?
   - The properties and structure of trials tokens are discussed in detail in the [design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit#bookmark=id.jtr9rupl4osm).
+
+3. What happens to the developer feedback collected in surveys?
+  - All data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
