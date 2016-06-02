@@ -6,7 +6,7 @@ Once your origin has opted into a trial of an experimental feature you can then 
 
 ## How do I enable an experimental feature on my origin?
 
-*Note: token registration opens in a couple of weeks. Please check back then*
+*Note: token registration opens in a couple of weeks. Please check back then.*
 
 You can opt any page on your origin into the trial of an experimental feature by requesting a token for your origin and then adding an origin-trial <meta> tag to the head of that page. For example this may look something like:
 ```
