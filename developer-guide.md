@@ -17,7 +17,7 @@ After filling out the form, we'll send you an email with your token. Note that t
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new APIs. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
 ## What experimental features are currently available?
-The [experimental feature tracker](available-trials) lists all of the currently available features and their experiment timelines.
+The [experimental feature tracker](/jpchase/OriginTrials/blob/gh-pages/available-trials.md) lists all of the currently available features and their experiment timelines.
 
 ## FAQ
 
