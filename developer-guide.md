@@ -6,18 +6,23 @@ Once your origin has opted into a trial of an experimental feature you can then 
 
 ## How do I enable an experimental feature on my origin?
 
-You can opt any page on your origin into the trial of an experimental feature by [requesting a token for your origin](http://bit.ly/OriginTrialSignup) and then adding an origin-trial <meta> tag to the head of that page. For example this may look something like:
+You can opt any page on your origin into the trial of an experimental feature by [requesting a token for your origin](http://bit.ly/OriginTrialSignup). After filling out the form, we'll send you an email with your token. Note that these tokens are currently generated manually so there may be up to 24 hours delay before you receive the token. Until then we encourage you to start developing with the feature by flipping the relevant flag in about:flags.
+
+When you receive the email, it will include the token, which is specific to your origin and requested feature. There are two ways to provide this token on any pages in your origin:
+
+- Add an `origin-trial` \<meta\> tag to the head of any page. For example this may look something like:
 ```
 <meta http-equiv="origin-trial" content="**insert your site’s token here**">
 ```
+- If you can configure your server, you can also provide the token on pages using an `Origin-Trial` HTTP header.
 
-After filling out the form, we'll send you an email with your token. Note that these tokens are currently generated manually so there may be up to 24 hours delay before you receive the token. Until then we encourage you to start developing with the feature by flipping the relevant flag in about:flags.
+If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
 ## What is the thinking behind origin trials?
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new APIs. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
 ## What experimental features are currently available?
-The [experimental feature tracker](available-trials) lists all of the currently available features and their experiment timelines.
+The [experimental feature tracker](available-trials.md) lists all of the currently available features and their experiment timelines.
 
 ## FAQ
 
