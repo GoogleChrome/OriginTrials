@@ -4,4 +4,4 @@ The experimental features available for trials will be listed here.
 
 | Feature | Description | Timeline |
 | --- | --- | --- |
-| \<name, plus link to docs/GitHub\> | \<brief description \>  | e.g. First available in Chrome Mxx Dev. Trial ends on \<date\> |
+| [Persistent Storage](https://developers.google.com/web/updates/2016/06/persistent-storage) | Allows web sites to make storage persistent, so it is not automatically cleared by the browser.  | First available in Chrome M52. Trial ends in October 2016. |
