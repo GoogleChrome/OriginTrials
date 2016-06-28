@@ -12,9 +12,12 @@ When you receive the email, it will include the token, which is specific to your
 
 - Add an `origin-trial` \<meta\> tag to the head of any page. For example this may look something like:
 ```
-<meta http-equiv="origin-trial" content="**insert your site’s token here**">
+<meta http-equiv="origin-trial" content="**insert your token as provided in the the email here**">
 ```
-- If you can configure your server, you can also provide the token on pages using an `Origin-Trial` HTTP header.
+- If you can configure your server, you can also provide the token on pages using an `Origin-Trial` HTTP header. The resulting response header should look something like:
+```
+Origin-Trial: **token as provided in the email**
+```
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
