@@ -19,6 +19,8 @@ When you receive the email, it will include the token, which is specific to your
 Origin-Trial: **token as provided in the email**
 ```
 
+Note: If https://foo.com contains a third-party `<script>` from https://bar.com that uses an experimental feature, https://foo.com will need to opt into a trial of this experimental feature to be able to call functions from it.
+
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
 ## What is the thinking behind origin trials?
