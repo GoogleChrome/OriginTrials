@@ -33,7 +33,11 @@ To ship as an origin trial, your feature must meet the following eligibility cri
   - If not exposed via IDL, the appropriate `UseCounter::count*()` method can be used directly from your feature implementation.
 
 ### Integration with the framework
-To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development).
+To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you use `origin_trial_feature_name` to associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development). You can have both `status=experimental` and `origin_trial_feature_name` if you want your feature to be enabled either by using the `--enable-experimental-web-platform-features` flag **or** the origin trial:
+
+```
+MyFeature status=experimental, origin_trial_feature_name=MyFeature
+```
 
 Once configured, there are two mechanisms to gate access to your feature behind an origin trial. You can use either mechanism, or both, as appropriate to your feature implementation.
 
@@ -46,6 +50,8 @@ partial interface Navigator {
 }
 ```
 
+If `OriginTrialEnabled` is used with IDL bindings, you may need to manually install the appropriate methods in the V8 bindings code. See [V8Binding.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/core/v8/V8Binding.cpp)'s `installOriginTrials` and [V8BindingForModules.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/modules/v8/V8BindingForModules.cpp)'s `installOriginTrialsForModules` [[crbug.com/615060](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)].
+
 **NOTE:** Your feature implementation must not persist the result of the enabled check. Your code should simply call `OriginTrials::myFeatureEnabled()` as often as necessary to gate access to your feature.
   
 
@@ -56,7 +62,19 @@ Similarly, if you need to know in the browser process whether a feature should b
 
 ### Testing
 If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. To generate your own tokens, use [/tools/origin_trials/generate_token.py](https://code.google.com/p/chromium/codesearch#chromium/src/tools/origin_trials/generate_token.py).
-You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test.
+You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test. For example:
+
+```
+tools/origin_trials/generate_token.py --key-file=tools/origin_trials/eftest.key http://localhost:8000 MyFeature
+```
+
+The `eftest.key` file is the private key for the test keypair used by Origin Trials unit tests (tokens generated with this key will **not** work in the browser by default; see the [Developer Guide](developer-guide.md) for instructions on creating real tokens). To use a test token with the browser, run Chrome with the command-line flag:
+
+```
+--origin-trial-public-key=dRCs+TocuKkocNKa0AtZ4awrt9XKH2SQCI6o4FY6BNA=
+```
+
+This is the public key associated with `eftest.key`. If it doesn't work, see [trial_token_unittest.cc](https://cs.chromium.org/chromium/src/content/common/origin_trials/trial_token_unittest.cc).
 
 ## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
