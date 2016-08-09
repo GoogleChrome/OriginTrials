@@ -50,7 +50,7 @@ partial interface Navigator {
 }
 ```
 
-If `OriginTrialEnabled` is used with IDL bindings, you may need to manually install the appropriate methods in the V8 bindings code. See [V8Binding.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/core/v8/V8Binding.cpp)'s `installOriginTrials` and [V8BindingForModules.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/modules/v8/V8BindingForModules.cpp)'s `installOriginTrialsForModules` [[crbug.com/615060](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)].
+If `OriginTrialEnabled` is used with IDL bindings, you may need to manually install the appropriate methods in the V8 bindings code. See [V8Binding.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/core/v8/V8Binding.cpp)'s `installOriginTrials` and [V8BindingForModules.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/modules/v8/V8BindingForModules.cpp)'s `installOriginTrialsForModules`. Eventually, the V8 bindings code will be generated automatically (See [crbug.com/615060](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)).
 
 **NOTE:** Your feature implementation must not persist the result of the enabled check. Your code should simply call `OriginTrials::myFeatureEnabled()` as often as necessary to gate access to your feature.
   
@@ -79,15 +79,15 @@ This is the public key associated with `eftest.key`. If it doesn't work, see [tr
 ## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
 
-Stretch goals (for Chrome M52):
-- [Revoking Tokens](https://code.google.com/p/chromium/issues/detail?id=582042)
-- Revoking entire features
-
-What we're not going to have (for Chrome M52):
-- [iOS support](https://code.google.com/p/chromium/issues/detail?id=582056)
-- [Extra data attached to tokens](https://code.google.com/p/chromium/issues/detail?id=582060)
-- Scoping tokens to a path
+What we're planning in the near future:
+- [Auto-generate V8 bindings code to install trials](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)
+- [Revoking Tokens](https://bugs.chromium.org/p/chromium/issues/detail?id=582042)
+- [Supporting origin trials in Dev Tools](https://bugs.chromium.org/p/chromium/issues/detail?id=607555)
 - Origin trials in compositor workers
-- Persistent origin trials in cached service worker scripts
+
+What we're considering (no guarantees!) for later:
+- [iOS support](https://bugs.chromium.org/p/chromium/issues/detail?id=582056)
+- [Extra data attached to tokens](https://bugs.chromium.org/p/chromium/issues/detail?id=582060)
+- Scoping tokens to a path
 
 To follow the most up-to-date progress and plans, filter in crbug.com for “[component:Internals>OriginTrials](https://bugs.chromium.org/p/chromium/issues/list?q=component:Internals%3EOriginTrials)”.
