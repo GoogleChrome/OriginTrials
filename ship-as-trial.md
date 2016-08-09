@@ -33,7 +33,11 @@ To ship as an origin trial, your feature must meet the following eligibility cri
   - If not exposed via IDL, the appropriate `UseCounter::count*()` method can be used directly from your feature implementation.
 
 ### Integration with the framework
-To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development).
+To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you use `origin_trial_feature_name` to associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development). You can have both `status=experimental` and `origin_trial_feature_name` if you want your feature to be enabled either by using the `--enable-experimental-web-platform-features` flag **or** the origin trial:
+
+```
+MyFeature status=experimental, origin_trial_feature_name=MyFeature
+```
 
 Once configured, there are two mechanisms to gate access to your feature behind an origin trial. You can use either mechanism, or both, as appropriate to your feature implementation.
 
