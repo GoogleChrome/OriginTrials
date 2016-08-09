@@ -62,7 +62,11 @@ Similarly, if you need to know in the browser process whether a feature should b
 
 ### Testing
 If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. To generate your own tokens, use [/tools/origin_trials/generate_token.py](https://code.google.com/p/chromium/codesearch#chromium/src/tools/origin_trials/generate_token.py).
-You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test.
+You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test. For example:
+
+```
+tools/origin_trials/generate_token.py --key-file=tools/origin_trials/eftest.key http://localhost:8000 MyFeature
+```
 
 ## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
