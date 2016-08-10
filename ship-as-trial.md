@@ -74,7 +74,7 @@ The file `tools/origin_trials/eftest.key` is used by default as the private key 
 --origin-trial-public-key=dRCs+TocuKkocNKa0AtZ4awrt9XKH2SQCI6o4FY6BNA=
 ```
 
-This is the public key associated with `eftest.key`. If it doesn't work, see [trial_token_unittest.cc](https://cs.chromium.org/chromium/src/content/common/origin_trials/trial_token_unittest.cc).
+This is the public key associated with `eftest.key`. If it doesn't work, see [trial_token_unittest.cc](https://cs.chromium.org/chromium/src/content/common/origin_trials/trial_token_unittest.cc). If you cannot set command-line switches (e.g., on Chrome OS), you can also directly modify [chrome_origin_trial_policy.cc](https://cs.chromium.org/chromium/src/chrome/common/origin_trials/chrome_origin_trial_policy.cc).
 
 ## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
