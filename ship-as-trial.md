@@ -65,10 +65,10 @@ If you want to test your code's interactions with the framework, you'll need to 
 You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test. For example:
 
 ```
-tools/origin_trials/generate_token.py --key-file=tools/origin_trials/eftest.key http://localhost:8000 MyFeature
+tools/origin_trials/generate_token.py http://localhost:8000 MyFeature
 ```
 
-The `eftest.key` file is the private key for the test keypair used by Origin Trials unit tests (tokens generated with this key will **not** work in the browser by default; see the [Developer Guide](developer-guide.md) for instructions on creating real tokens). To use a test token with the browser, run Chrome with the command-line flag:
+The file `tools/origin_trials/eftest.key` is used by default as the private key for the test keypair used by Origin Trials unit tests (tokens generated with this key will **not** work in the browser by default; see the [Developer Guide](developer-guide.md) for instructions on creating real tokens). To use a test token with the browser, run Chrome with the command-line flag:
 
 ```
 --origin-trial-public-key=dRCs+TocuKkocNKa0AtZ4awrt9XKH2SQCI6o4FY6BNA=
