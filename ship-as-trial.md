@@ -25,7 +25,7 @@ First, origin trials are integrated into the [launch process for new web platfor
 To ship as an origin trial, your feature must meet the following eligibility criteria:
 - Be approved by the internal Chrome launch review process
   - Users may be exposed to your feature without opting in, so the appropriate measures must be taken for privacy, security, etc.
-- Implement a kill switch that allows your feature to be disabled via Finch
+- If disabling the interface of your API is not sufficient to disable it's functionality, implement a kill switch that allows your feature to be disabled via Finch
   - This can use the existing functionality in PermissionContextBase or base::FeatureList, or be a feature-specific implementation.
 - Record usage of the feature using [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)
   - The feature must have a corresponding entry in the enum [UseCounter::Feature](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h&q=%22enum%20Feature%22&sq=package:chromium&type=cs&l=65).
