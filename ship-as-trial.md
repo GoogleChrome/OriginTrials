@@ -2,8 +2,6 @@
 
 For the full context on origin trials, please see the [explainer](explainer.md). Here, we describe what is involved in shipping a new browser feature for experimentation in an origin trial.
 
-The process and functionality below is targetting the _Chrome M52_ milestone.
-
 ## What is provided by the Origin Trials framework in Chrome?
 
 The framework will enable features at runtime, on a per-execution-context basis (practically, this will be per-document or per-worker). Features are disabled by default, and only be enabled if a properly signed token, scoped to the origin that it is being presented on, and scoped to the specific feature name, is present in either:
