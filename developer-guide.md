@@ -53,6 +53,6 @@ The [experimental feature tracker](available-trials.md) lists all of the current
 10. Can I request a token for an origin that I don't own?
   - Yes, you can technically request a token for an origin that you don't own. However, generating the token won't cause the feature to be enabled on that origin - unless it is served in the pages on that origin (either in the \<head\> or as an HTTP header). Also note that these features have held up to the same high security and privacy standards as any other feature in Chrome.
 11. Why do tokens expire before the trial ends?
-  - Currently, we issue tokens that expire in 6 weeks. We issue tokens that expire for a number of reasons, most importantly:
+  - Currently, we issue tokens that expire in 6 weeks. Before a token expires, we'll send you an email to invite you to renew and continue participating in the trial. We issue tokens that expire for a number of reasons, most importantly:
     - To prevent experimental features from becoming "burned in" to the web platform. With shorter-lived tokens, we can ensure that no site can use a feature for more than a month or two, without checking in with us.
     - To provide an opportunity to collect feedback on features from web developers. We can ask for feedback on each token renewal.
