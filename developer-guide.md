@@ -23,7 +23,7 @@ If you have trouble configuring pages with your token, or need other help, pleas
 
 ## How can I experiment with the new feature locally?
 
-Each feature that is available as an origin trial can alternatively be enabled on individual machines by flipping the corresponding flag in [about:flags](http://about:flags). The correct flag depends on the feature, and should be mentioned in the blog post about that specific feature.
+Each feature that is available as an origin trial can alternatively be enabled on individual machines by flipping the corresponding flag in about:flags. The correct flag depends on the feature, and should be mentioned in the blog post about that specific feature.
 
 You can get started experimenting with the new feature on `localhost` either by flipping the flag locally or requesting an origin trials token for `localhost`.
 
