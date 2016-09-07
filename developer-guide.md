@@ -21,6 +21,12 @@ Origin-Trial: **token as provided in the email**
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
+## How can I experiment with the new feature locally?
+
+Each feature that is available as an origin trial can alternatively be enabled on individual machines by flipping the corresponding flag in [about:flags](http://about:flags). The correct flag depends on the feature, and should be mentioned in the blog post about that specific feature.
+
+You can get started experimenting with the new feature on `localhost` either by flipping the flag locally or requesting an origin trials token for `localhost`.
+
 ## What is the thinking behind origin trials?
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new APIs. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
