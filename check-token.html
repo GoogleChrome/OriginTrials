@@ -86,7 +86,8 @@
    const payloadLength = new DataView(token.buffer, 65, 4).getInt32(0, /*littleEndian=*/false);
    const payload = new Uint8Array(token.buffer, 69);
    if (payload.length !== payloadLength) {
-     validityElem.textContent = "Token is too short";
+     validityElem.textContent =
+         "Token is " + payload.length + " bytes; expected " + payloadLength;
      return;
    }
 
