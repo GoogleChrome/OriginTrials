@@ -49,6 +49,9 @@ Before shipping as trial, your feature needs to be ready for both web developers
   - This could be the README.md in your Github repo, or any other page of your choice
   - Should include details about availability via origin trials
 
+## What is the timeline for running a trial and collecting feedback?
+Please see our [overview of the timeline for running a trial and collecting feedback](https://docs.google.com/spreadsheets/d/1QVuhf96PZdnrfUQP4rRMhptkQPJe2K1EmJPuT6iS0a4/edit#gid=0). Contact experimentation-dev@chromium.org with any questions.
+
 ## What is the actual process for shipping?
 
 Shipping as an origin trial requires the following:
