@@ -64,7 +64,7 @@ Shipping as an origin trial requires the following:
 - Ship the feature in Chrome (i.e. all code landed prior to beta)
 - Publicize the availability of the feature as an origin trial
   - Typically, this would be publishing a prepared blog post
-  - The origin trials team will add your feature to the [sign up form](bit.ly/OriginTrialSignup), and to the list of [available trials](available-trials.md).
+  - The origin trials team will add your feature to the [sign up form](https://bit.ly/OriginTrialSignup), and to the list of [available trials](available-trials.md).
 
 
 Note that these steps are not meant to be sequential. For example, you can
