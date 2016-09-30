@@ -21,7 +21,7 @@ The framework will enable features at runtime, on a per-execution-context basis 
 
 The logic for enabling includes a check of your [runtime feature flag](http://dev.chromium.org/blink/runtime-enabled-features) (even if the origin trials framework isn't being used). This means you can easily test your feature locally, even without any trial tokens.
 
-Origin Trials are being enabled in documents (for both inline and external scripts), and in shared and dedicated workers. (Note that for shared workers, HTTP headers are the only way to enable trials. Dedicated workers will also inherit any trials enabled by their parent document).
+Origin Trials are being enabled in documents (for both inline and external scripts), and in service, shared, and dedicated workers. (Note that for service workers and shared workers, HTTP headers are the only way to enable trials. Dedicated workers will also inherit any trials enabled by their parent document).
 
 If an experiment gets out of hand (*way* too popular to be an experiment anymore, for instance),  we’ll be able to turn it off remotely, for all origins. SImilarly, if there turns out to be major problems with the implementation of the framework itself, we’ll be able to turn it off completely, and disable all trials. (Hopefully we don’t have to do that, but we're still in the early stages of origin trials, and we’re being careful.)
 
