@@ -65,11 +65,18 @@ Shipping as an origin trial requires the following:
 - Publicize the availability of the feature as an origin trial
   - Typically, this would be publishing a prepared blog post
   - The origin trials team will add your feature to the [sign up form](https://bit.ly/OriginTrialSignup), and to the list of [available trials](available-trials.md).
-
+  - [See below](#adding-your-feature-to-the-sign-up-form) for more details
 
 Note that these steps are not meant to be sequential. For example, you can
 certainly start integrating your feature with origin trials prior to getting
 various launch approvals.
+
+### Adding your feature to the sign up form
+
+Before your feature can be added to the sign up form, the landing page must be available to web developers ([see above](#is-your-feature-ready-to-ship)). The origin trials team needs some documentation for web developers that sign up (which has happened within minutes of a feature being added to the form!).
+
+In some cases, this may lead to a chicken-and-egg problem. For example, you may not want to publish a blog post until the feature is added the form. If the blog post has detailed information on joining the origin trial, it doesn't make sense to publish and have web developers unable to see your feature on the sign up form. Conversely, if the feature is added to the form first, web developers can (and have in the past) seen the change and signed up before the docs are ready.
+
 
 ## How to integrate your feature with the framework?
 To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you use `origin_trial_feature_name` to associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development). You can have both `status=experimental` and `origin_trial_feature_name` if you want your feature to be enabled either by using the `--enable-experimental-web-platform-features` flag **or** the origin trial:
@@ -94,7 +101,7 @@ If `OriginTrialEnabled` is used with IDL bindings, you may need to manually inst
 **NOTE:** Your feature implementation must not persist the result of the enabled check. Your code should simply call `OriginTrials::myFeatureEnabled()` as often as necessary to gate access to your feature.
 
 
-#### Limitations
+### Limitations
 What you can't do, because of the nature of these Origin Trials, is know at either browser or renderer startup time whether your feature is going to be used in the current page/context. This means that if you require lots of expensive processing to begin (say you index the user's hard drive, or scan an entire city for interesting weather patterns,) that you will have to either do it on browser startup for *all* users, just in case it's used, or do it on first access. (If you go with first access, then only people trying the experiment will notice the delay, and hopefully only the first time they use it.). We are investigating providing a method like `OriginTrials::myFeatureShouldInitialize()` that will hint if you should do startup initialization.  For example, this could include checks for trials that have been revoked (or throttled) due to usage, if the entire EF has been disabled, etc.  The method would be conservative and assume initialization is required, but it could avoid expensive startup in some known scenarios.
 
 Similarly, if you need to know in the browser process whether a feature should be enabled, then you will have to either have the renderer inform it at runtime, or else just assume that it's always enabled, and gate access to the feature from the renderer.
@@ -122,7 +129,7 @@ What we're planning in the near future:
 - [Auto-generate V8 bindings code to install trials](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)
 - [Revoking Tokens](https://bugs.chromium.org/p/chromium/issues/detail?id=582042)
 - [Supporting origin trials in Dev Tools](https://bugs.chromium.org/p/chromium/issues/detail?id=607555)
-- Origin trials in compositor workers
+- Origin trials in Animation Worklets (was compositor workers)
 
 What we're considering (no guarantees!) for later:
 - [iOS support](https://bugs.chromium.org/p/chromium/issues/detail?id=582056)
