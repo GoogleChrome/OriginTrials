@@ -135,10 +135,16 @@
      expiryElem.textContent = obj.expiry;
      return;
    }
-   expiryElem.textContent = new Date(expiry * 1000).toLocaleString();
+
+   let expiryDate = new Date(expiry * 1000);
+   expiryElem.textContent = expiryDate.toLocaleString();
+   if (expiryDate < new Date()) {
+     validityElem.textContent = "Expired"
+     return;
+   }
 
    validityElem.classList.remove("invalid");
-   validityElem.textContent = "Valid"
+   validityElem.textContent = "Valid";
  }
 
  tokenElem.oninput = validate;
