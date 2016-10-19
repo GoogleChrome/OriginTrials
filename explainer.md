@@ -124,7 +124,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - Sometimes we, the web standards community, spend years designing an API that turns out to be fundamentally flawed and then have to go back to the drawing board for a few more years before we can ship the right thing. We believe letting developers safely try experiments in production early will allow us to realize these mistakes earlier, increasing our ability to learn and ship the right things sooner.
 
 *How can I find out about new experiments when they become available?*
-  - An update will be posted to developers.google.com/web/updates for each new API that becomes available.
+  - Articles announcing features are posted to developers.google.com/web/updates and [available trials](https://github.com/jpchase/OriginTrials/blob/gh-pages/available-trials.md) are listed in this repository.
 
 *Will all of these experiments ship eventually?*
   - Remember that these are only experiments. There is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
