@@ -20,6 +20,7 @@
   <tr><th>Valid?</th><td><span id="validity"></span></td></tr>
   <tr><th>Version</th><td><span id="version"></span></td></tr>
   <tr><th>Origin</th><td><span id="origin"></span></td></tr>
+  <tr><th>Matches Subdomains?</th><td><span id="subdomain"></span></td></tr>
   <tr><th>Feature</th><td><span id="feature"></span></td></tr>
   <tr><th>Expires</th><td><span id="expiry"></span></td></tr>
 </table>
@@ -43,6 +44,7 @@
  const validityElem = document.getElementById("validity");
  const versionElem = document.getElementById("version");
  const originElem = document.getElementById("origin");
+ const subdomainElem = document.getElementById("subdomain");
  const featureElem = document.getElementById("feature");
  const expiryElem = document.getElementById("expiry");
 
@@ -55,6 +57,7 @@
    validityElem.textContent = "";
    validityElem.classList.add("invalid");
    originElem.textContent = "";
+   subdomainElem.textContent = "";
    featureElem.textContent = "";
    expiryElem.textContent = "";
 
@@ -114,6 +117,7 @@
      validityElem.textContent = "Invalid UTF-8";
      return;
    }
+   console.log("Token JSON", json);
 
    let obj;
    try {
@@ -125,6 +129,7 @@
    }
 
    originElem.textContent = obj.origin;
+   subdomainElem.textContent = obj.isSubdomain ? "Yes" : "No";
    featureElem.textContent = obj.feature;
    let expiry;
    try {
