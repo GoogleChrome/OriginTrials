@@ -1,13 +1,13 @@
-# Shipping a feature for use in an origin trial
+# Running an origin trial for a feature
 
 _For the full context on origin trials, please see the [explainer](explainer.md)._
 
-Here, we describe what is involved in shipping a new browser feature for experimentation in an origin trial. Most importantly, origin trials are integrated into the [launch process for new web platform features](http://www.chromium.org/blink#launch-process). You should be following that overall process (maybe you ended up here from that page).
+Here, we describe what is involved in running an origin trials experiment for a new browser feature. Most importantly, origin trials are integrated into the [launch process for new web platform features](http://www.chromium.org/blink#launch-process). You should be following that overall process (maybe you ended up here from that page).
 
 Contents:
 - [How do Origin Trials work in Chrome?](#how-do-origin-trials-work-in-chrome)
-- [Is your feature ready to ship?](#is-your-feature-ready-to-ship)
-- [Ready to ship - what is the process?](#what-is-the-actual-process-for-shipping)
+- [Is your feature ready to be an origin trial?](#is-your-feature-ready-to-be-an-origin-trial)
+- [What is the process to run an origin trial?](#what-is-the-actual-process-to-run-an-origin-trial)
 - [How to integrate your feature with the framework?](#how-to-integrate-your-feature-with-the-framework)
 - [Roadmap](#roadmap)
 
@@ -25,9 +25,9 @@ Origin Trials are being enabled in documents (for both inline and external scrip
 
 If an experiment gets out of hand (*way* too popular to be an experiment anymore, for instance),  we’ll be able to turn it off remotely, for all origins. SImilarly, if there turns out to be major problems with the implementation of the framework itself, we’ll be able to turn it off completely, and disable all trials. (Hopefully we don’t have to do that, but we're still in the early stages of origin trials, and we’re being careful.)
 
-## Is your feature ready to ship?
+## Is your feature ready to be an origin trial?
 
-Before shipping as trial, your feature needs to be ready for both web developers and users. Your feature must satisfy the following:
+Before running an origin trial experiment, your feature needs to be ready for both web developers and users. Your feature must satisfy the following:
 - Be approved by the internal Chrome launch review process
   - Users may be exposed to your feature without opting in, so the appropriate measures must be taken for privacy, security, etc.
 - Have a way to remotely disable the feature
@@ -52,16 +52,16 @@ Before shipping as trial, your feature needs to be ready for both web developers
 ## What is the timeline for running a trial and collecting feedback?
 Please see our [overview of the timeline for running a trial and collecting feedback](https://docs.google.com/spreadsheets/d/1QVuhf96PZdnrfUQP4rRMhptkQPJe2K1EmJPuT6iS0a4/edit#gid=0). Contact experimentation-dev@chromium.org with any questions.
 
-## What is the actual process for shipping?
+## What is the actual process to run an origin trial?
 
-Shipping as an origin trial requires the following:
+Running an origin trial requires the following:
 - Let the origin trials team know about your feature
   - We can help you through this process, and make sure origin trials will meet your needs
-- Make sure your feature is ready to ship ([see above](#is-your-feature-ready-to-ship))
+- Make sure your feature is ready to run an origin trial experiment ([see above](#is-your-feature-ready-to-be-an-origin-trial))
  - Specifically, get Chrome launch approval!
 - Integrate with the origin trials framework ([see below](#how-to-integrate-your-feature-with-the-framework))
 - Send an [Intent to Experiment](http://www.chromium.org/blink#launch-process)
-- Ship the feature in Chrome (i.e. all code landed prior to beta)
+- Land the feature in Chrome prior to beta
 - Publicize the availability of the feature as an origin trial
   - Typically, this would be publishing a prepared blog post
   - The origin trials team will add your feature to the [sign up form](https://bit.ly/OriginTrialSignup), and to the list of [available trials](available-trials.md).
@@ -73,7 +73,7 @@ various launch approvals.
 
 ### Adding your feature to the sign up form
 
-Before your feature can be added to the sign up form, the landing page must be available to web developers ([see above](#is-your-feature-ready-to-ship)). The origin trials team needs some documentation for web developers that sign up (which has happened within minutes of a feature being added to the form!).
+Before your feature can be added to the sign up form, the landing page must be available to web developers ([see above](#is-your-feature-ready-to-run-an-origin-trial)). The origin trials team needs some documentation for web developers that sign up (which has happened within minutes of a feature being added to the form!).
 
 In some cases, this may lead to a chicken-and-egg problem. For example, you may not want to publish a blog post until the feature is added the form. If the blog post has detailed information on joining the origin trial, it doesn't make sense to publish and have web developers unable to see your feature on the sign up form. Conversely, if the feature is added to the form first, web developers can (and have in the past) seen the change and signed up before the docs are ready.
 
