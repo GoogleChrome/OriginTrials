@@ -5,11 +5,18 @@ _For the full context on origin trials, please see the [explainer](explainer.md)
 Here, we describe what is involved in running an origin trials experiment for a new browser feature. Most importantly, origin trials are integrated into the [launch process for new web platform features](http://www.chromium.org/blink#launch-process). You should be following that overall process (maybe you ended up here from that page).
 
 Contents:
+- [Should you run an Origin Trial?](#should-you-run-an-origin-trial)
 - [How do Origin Trials work in Chrome?](#how-do-origin-trials-work-in-chrome)
 - [Is your feature ready to be an origin trial?](#is-your-feature-ready-to-be-an-origin-trial)
 - [What is the process to run an origin trial?](#what-is-the-actual-process-to-run-an-origin-trial)
 - [How to integrate your feature with the framework?](#how-to-integrate-your-feature-with-the-framework)
 - [Roadmap](#roadmap)
+
+## Should you run an Origin Trial?
+
+Origin Trials are intended to be used to ensure we design the best possible APIs by getting feedback from developers before the standard is finalized. They may also secondarily be used to prove developer interest in an API proposal that is otherwise undesired due to an expected lack of interest.
+
+*If you're planning to run an Origin Trial please first schedule a meeting with the Origin Trials core team to quickly talk over your API and the reason for running the trial.* To set up this meeting you can email owencm@chromium.org or chasej@chromium.org. Google employees can alternatively schedule a meeting directly with origin-trials-core@google.com.
 
 ## How do Origin Trials work in Chrome?
 
