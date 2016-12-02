@@ -14,9 +14,9 @@ Contents:
 
 ## Should you run an Origin Trial?
 
-Origin Trials are intended to be used to ensure we design the best possible APIs by getting feedback from developers before the standard is finalized. They may also secondarily be used to prove developer interest in an API proposal that is otherwise undesired due to an expected lack of interest.
+Origin Trials are intended to be used to ensure we design the best possible features by getting feedback from developers before the standard is finalized. They may also be used to prove developer interest in a feature proposal that is otherwise undesired due to an expected lack of interest.
 
-*If you're planning to run an Origin Trial please first schedule a meeting with the Origin Trials core team to quickly talk over your API and the reason for running the trial.* To set up this meeting you can email owencm@chromium.org or chasej@chromium.org. Google employees can alternatively schedule a meeting directly with origin-trials-core@google.com.
+*If you're planning to run an Origin Trial please first schedule a meeting with the Origin Trials core team to quickly talk over your feature and the reason for running the trial.* To set up this meeting you can email owencm@chromium.org or chasej@chromium.org. Google employees can alternatively schedule a meeting directly with origin-trials-core@google.com.
 
 ## How do Origin Trials work in Chrome?
 
