@@ -1,6 +1,6 @@
 # Origin Trials Guide for Web Developers
 
-When an API is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time. The purpose is to try it out and give feedback on usability, practicality, and effectiveness of the API to the web standards community. Note that when the trial finishes we will contact you with a request to provide this feedback.
+When an API is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time. Origin trials allow developers to try out new APIs and give feedback on usability, practicality, and effectiveness to the web standards community before a final decision is made about the API design, or even whether we want to proceed with standardizing and enabling the feature by default. Note that when the trial finishes we will contact you with a request to provide this feedback.
 
 Once your origin has opted into a trial of an experimental feature you can then build demos and prototypes that your friends and beta testing users can try for the duration of the trial without them needing to flip special flags in Chrome.
 
