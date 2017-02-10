@@ -152,3 +152,6 @@ Beyond surveys, we hope that developers will participate in the community around
 
 *What happens to the developer feedback collected in surveys?*
   - How feedback is collected and shared is outlined [above](explainer.md#collecting-developer-feedback). Note that all data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
+
+*Why shouldn't browsers just use A/B experimentation techniques to test out web platform features*
+  - It's common in software to rely on A/B experiments to compare one design to another.  This isn't appropriate when experimenting with platform API surface area because it would make it extremely difficult for developers to reason about the behavior they're seeing from the platform (making the platform much less predictable).  For example, when a user reports an issue, developers try to match the exact browser version and OS when attempting to reproduce the problem.  When there's some other variable they don't know about (eg. rarely a user will have a special browser flag enabled), it inevtiably causes a ton of frustration and confusion.
