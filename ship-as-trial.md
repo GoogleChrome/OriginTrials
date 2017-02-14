@@ -86,48 +86,8 @@ In some cases, this may lead to a chicken-and-egg problem. For example, you may 
 
 
 ## How to integrate your feature with the framework?
-To expose your feature via the origin trials framework, you’ll need to configure [RuntimeEnabledFeatures.in](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/platform/RuntimeEnabledFeatures.in).  This is explained in the file, but you use `origin_trial_feature_name` to associate your runtime feature flag with a name for your origin trial.  The name can be the same as your runtime feature flag, or different.  Eventually, this configured name will be used in the Origin Trials developer console (still under development). You can have both `status=experimental` and `origin_trial_feature_name` if you want your feature to be enabled either by using the `--enable-experimental-web-platform-features` flag **or** the origin trial:
-
-```
-MyFeature status=experimental, origin_trial_feature_name=MyFeature
-```
-
-Once configured, there are two mechanisms to gate access to your feature behind an origin trial. You can use either mechanism, or both, as appropriate to your feature implementation.
-
-1. A native C++ method that you can call in Blink code at runtime to expose your feature: `bool OriginTrials::myFeatureEnabled()`
-2. An IDL attribute [\[OriginTrialEnabled\]](https://chromium.googlesource.com/chromium/src/+/master/third_party/WebKit/Source/bindings/IDLExtendedAttributes.md#OriginTrialEnabled-i_m_a_c) that you can use to automatically expose and hide JavaScript methods/attributes/objects. This attribute works very similar to \[RuntimeEnabled\].
-```
-[OriginTrialEnabled=MyFeature]
-partial interface Navigator {
-     readonly attribute MyFeatureManager myFeature;
-}
-```
-
-If `OriginTrialEnabled` is used with IDL bindings, you may need to manually install the appropriate methods in the V8 bindings code. See [V8Binding.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/core/v8/V8Binding.cpp)'s `installOriginTrials` and [V8BindingForModules.cpp](https://cs.chromium.org/chromium/src/third_party/WebKit/Source/bindings/modules/v8/V8BindingForModules.cpp)'s `installOriginTrialsForModules`. Eventually, the V8 bindings code will be generated automatically (See [crbug.com/615060](https://bugs.chromium.org/p/chromium/issues/detail?id=615060)).
-
-**NOTE:** Your feature implementation must not persist the result of the enabled check. Your code should simply call `OriginTrials::myFeatureEnabled()` as often as necessary to gate access to your feature.
-
-
-### Limitations
-What you can't do, because of the nature of these Origin Trials, is know at either browser or renderer startup time whether your feature is going to be used in the current page/context. This means that if you require lots of expensive processing to begin (say you index the user's hard drive, or scan an entire city for interesting weather patterns,) that you will have to either do it on browser startup for *all* users, just in case it's used, or do it on first access. (If you go with first access, then only people trying the experiment will notice the delay, and hopefully only the first time they use it.). We are investigating providing a method like `OriginTrials::myFeatureShouldInitialize()` that will hint if you should do startup initialization.  For example, this could include checks for trials that have been revoked (or throttled) due to usage, if the entire EF has been disabled, etc.  The method would be conservative and assume initialization is required, but it could avoid expensive startup in some known scenarios.
-
-Similarly, if you need to know in the browser process whether a feature should be enabled, then you will have to either have the renderer inform it at runtime, or else just assume that it's always enabled, and gate access to the feature from the renderer.
-
-### Testing
-If you want to test your code's interactions with the framework, you'll need to generate some tokens of your own. To generate your own tokens, use [/tools/origin_trials/generate_token.py](https://code.google.com/p/chromium/codesearch#chromium/src/tools/origin_trials/generate_token.py).
-You can generate signed tokens for localhost, or for 127.0.0.1, or for any origin that you need to help you test. For example:
-
-```
-tools/origin_trials/generate_token.py http://localhost:8000 MyFeature
-```
-
-The file `tools/origin_trials/eftest.key` is used by default as the private key for the test keypair used by Origin Trials unit tests (tokens generated with this key will **not** work in the browser by default; see the [Developer Guide](developer-guide.md) for instructions on creating real tokens). To use a test token with the browser, run Chrome with the command-line flag:
-
-```
---origin-trial-public-key=dRCs+TocuKkocNKa0AtZ4awrt9XKH2SQCI6o4FY6BNA=
-```
-
-This is the public key associated with `eftest.key`. If it doesn't work, see [trial_token_unittest.cc](https://cs.chromium.org/chromium/src/content/common/origin_trials/trial_token_unittest.cc). If you cannot set command-line switches (e.g., on Chrome OS), you can also directly modify [chrome_origin_trial_policy.cc](https://cs.chromium.org/chromium/src/chrome/common/origin_trials/chrome_origin_trial_policy.cc).
+The integration instructions now live in the Chromium source repo:
+https://chromium.googlesource.com/chromium/src/+/master/docs/origin_trials_integration.md
 
 ## Roadmap
 All of this may change, as we respond to your feedback about the framework itself. Please let us know how it works, and what's missing!
