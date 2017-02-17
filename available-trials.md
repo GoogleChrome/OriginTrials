@@ -1,6 +1,6 @@
 # Current Experimental Features
 
-The experimental features available for trials will be listed here.
+Sign up to enable any of these features on your origin by filling out [this form](http://bit.ly/OriginTrialSignup).
 
 | Feature | Description | Timeline |
 | --- | --- | --- |
