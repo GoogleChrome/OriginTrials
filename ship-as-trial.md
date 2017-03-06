@@ -61,18 +61,21 @@ Please see our [overview of the timeline for running a trial and collecting feed
 
 ## What is the actual process to run an origin trial?
 
+First review the [Blink launch process](http://www.chromium.org/blink/launching-features).
+
 Running an origin trial requires the following:
 - Let the origin trials team know about your feature
   - We can help you through this process, and make sure origin trials will meet your needs
 - Make sure your feature is ready to run an origin trial experiment ([see above](#is-your-feature-ready-to-be-an-origin-trial))
  - Specifically, get Chrome launch approval!
 - Integrate with the origin trials framework ([see below](#how-to-integrate-your-feature-with-the-framework))
-- Send an [Intent to Experiment](http://www.chromium.org/blink#launch-process)
+- Send an [Intent to Experiment](http://www.chromium.org/blink/launching-features)
 - Land the feature in Chrome prior to beta
 - Publicize the availability of the feature as an origin trial
   - Typically, this would be publishing a prepared blog post
   - The origin trials team will add your feature to the [sign up form](https://bit.ly/OriginTrialSignup), and to the list of [available trials](available-trials.md).
   - [See below](#adding-your-feature-to-the-sign-up-form) for more details
+- You can review the sign ups to your API (and renewals) by following the links in the [Origin Trials feature pipeline spreadsheet](go/origin-trials-feature-pipeline).
 
 Note that these steps are not meant to be sequential. For example, you can
 certainly start integrating your feature with origin trials prior to getting
