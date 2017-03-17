@@ -57,7 +57,7 @@ Before running an origin trial experiment, your feature needs to be ready for bo
   - Should include details about availability via origin trials
 
 ## What is the timeline for running a trial and collecting feedback?
-Please see our [overview of the timeline for running a trial and collecting feedback](https://docs.google.com/spreadsheets/d/1QVuhf96PZdnrfUQP4rRMhptkQPJe2K1EmJPuT6iS0a4/edit#gid=0). Contact experimentation-dev@chromium.org with any questions.
+Please see our [overview of the timeline for running a trial and collecting feedback](https://docs.google.com/document/d/1ttgWkpQUtlJy0Q5HhXdaPKs2DHfITbNwLqtNRxqdKMI/edit). Contact experimentation-dev@chromium.org with any questions.
 
 ## What is the actual process to run an origin trial?
 
