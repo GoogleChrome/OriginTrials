@@ -10,7 +10,7 @@ Please see the [explainer](explainer.md) to learn more about the problem, and wh
 ##Contents
 In addition to describing the problem, and solution, you'll find information for implementing features as experiments, participating in experiments, and details about how it works in Chrome.
 
-* [Motivation/Explainer](explainer.md) - Detailed discussion of the problem, the history and why we think origin trials are a good solution 
+* [Motivation/Explainer](explainer.md) - Detailed discussion of the problem, the history and why we think origin trials are a good solution
 * [Current Experiments](available-trials.md) - List of experimental features available in origin trials
 * [Web Developer Guide](developer-guide.md) - For web developers looking to participate in a trial
-* [Feature Author Guide](ship-as-trial.md) - For browser engineers looking to experiment with their feature
+* [Feature Author Guide](https://dev.chromium.org/blink/origin-trials/running-an-origin-trial) - For browser engineers looking to experiment with their feature

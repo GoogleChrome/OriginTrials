@@ -64,7 +64,7 @@ Earlier, we outlined two key aspects of the origin trials solution. First, using
 The high-level process for experimental features is:
 - An experimental feature is implemented in Chrome.
   - This follows the established [launch process](http://www.chromium.org/blink#launch-process) for web platform features, with the addition of an "Intent to Experiment" and other steps for experiments.
-  - Feature authors (i.e. browser engineers) can refer to [this guide](ship-as-trial.md) for more details.
+  - Feature authors (i.e. browser engineers) can refer to [this guide](https://dev.chromium.org/blink/origin-trials/running-an-origin-trial) for more details.
 - The feature author publishes an origin trial (i.e. experiment) for this feature. The trial must include an end date, to limit the duration.
   - Currently, this is a manual process where a feature is made available for registrations
   - We expect to automate this process, as part of a self-service developer console
@@ -99,7 +99,7 @@ To enforce these limits, usage for each feature with an active origin trial will
 When the usage limits are exceeded for a feature, the feature will be disabled for future use. As features are enabled by self-contained trial tokens, a separate mechanism is needed to revoke/override the access provided by otherwise valid tokens. In general we intend to use:
  - Feature-implemented Finch switches, that we require them to implement, or
  - If the API is permissioned, the global permissions kill switch which effectively denies permission to access the new API
- 
+
 There are further steps we can take if there is some unforseen issue with the above kill switches, for example:
  - Remotely replace the token signing key on clients (effectively invalidates all tokens signed with the previous
     key).
@@ -109,14 +109,14 @@ All the above mechanisms make use of the existing infrastructure in Chrome to pu
 
 Different mechanisms will be used to disable a feature, depending on how the
 usage limits were exceeded. Initially, the feature-implemented switch will most
-commonly be used to disable the specific overused feature. 
+commonly be used to disable the specific overused feature.
 
 ### Collecting developer feedback
 One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers.
 
 The primary means for collecting feedback will be structured surveys at the end of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature, collected via a Google form. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
 
-Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature. 
+Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
 
 ## FAQ
 
@@ -130,7 +130,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - Remember that these are only experiments. There is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
 
 *What happens if a large site such as a Google service starts depending on an experimental API?*
-  - Origin trials have a built-in safeguard that automatically disables an experimental API globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by Chrome Status) may be deprecated. 
+  - Origin trials have a built-in safeguard that automatically disables an experimental API globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by Chrome Status) may be deprecated.
 
 *Isn’t this just vendor prefixing all over again?*
   - This topic has been explored in great depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa). A couple of key differences include the fact that these features automatically stop working before they become too broadly adopted and that developers cannot simply copy-paste code using an experimental API from the web since they would need to go through the experimental API signup process and accept that the feature is going to shortly stop working.
