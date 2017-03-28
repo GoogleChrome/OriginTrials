@@ -41,7 +41,7 @@ When reflecting on the problem we outlined earlier, it’s clear that we can’t
 
 We believe these constraints are solvable with ‘origin trials’. **In summary, with origin trials**:
 - Developers are able to register for an experimental feature to be enabled on their origin for a fixed period of time measured in months. In exchange, they provide us their email address and agree to give feedback once the experiment ends.
-- Usage of these experiments is constrained to remain below Chrome’s deprecation threshold (< 0.03% of all Chrome page loads) by a system which automatically disables the experiment on all origins if this threshold is exceeded.
+- Usage of these experiments is constrained to remain below Chrome’s deprecation threshold (< 0.5% of all Chrome page loads) by a system which automatically disables the experiment on all origins if this threshold is exceeded.
 
 This design is expanded in detail later, but first consider how this satisfies the constraints we outlined earlier:
 - **Encouraging developers to try features and provide feedback:** This system allows us to effectively communicate with these developers for the first time, and we believe the ability to use new features to build demos and prototypes that can be shared with friends, Twitter and beta testers will compel developers to try out these features.
@@ -92,7 +92,7 @@ Trial tokens are self-contained, verifiable blobs of text, which can safely be e
 
 ### Monitoring and limiting usage
 
-As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.03% of all Chrome page loads (i.e. same as Chrome’s deprecation threshold).
+As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.5% of all Chrome page loads
 
 To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature.
 
@@ -130,7 +130,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - Remember that these are only experiments. There is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
 
 *What happens if a large site such as a Google service starts depending on an experimental API?*
-  - Origin trials have a built-in safeguard that automatically disables an experimental API globally if its usage exceeds 0.03% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.03% of all page loads (as measured by Chrome Status) may be deprecated.
+  - Origin trials have a built-in safeguard that automatically disables an experimental API globally if its usage exceeds 0.5% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.5% of all page loads (as measured by Chrome Status) may be deprecated.
 
 *Isn’t this just vendor prefixing all over again?*
   - This topic has been explored in great depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa). A couple of key differences include the fact that these features automatically stop working before they become too broadly adopted and that developers cannot simply copy-paste code using an experimental API from the web since they would need to go through the experimental API signup process and accept that the feature is going to shortly stop working.
@@ -139,7 +139,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - No, these experimental APIs will all be approved as safe by Chrome’s privacy and security teams.
 
 *Is there any restriction on which websites can sign up to use experimental APIs?*
-  - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.03% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for use on very large production sites such as the Google home page.
+  - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.5% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for use on very large production sites such as the Google home page.
 
 *Is there any review process for signing up a website to access an experimental API?*
   - No. We do not review domain content before generating a token. The current delay in receiving a token is only due to some automatic processes not yet being available, but we hope to resolve that later this year.
