@@ -1402,9 +1402,9 @@ Possible extra rowspan handling
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
-     <dd><a class="u-url" href="https://jpchase.github.io/OriginTrials/">https://jpchase.github.io/OriginTrials/</a>
+     <dd><a class="u-url" href="https://googlechrome.github.io/OriginTrials/">https://googlechrome.github.io/OriginTrials/</a>
      <dt>Issue Tracking:
-     <dd><a href="https://github.com/jpchase/OriginTrials/issues/">GitHub</a>
+     <dd><a href="https://github.com/GoogleChrome/OriginTrials/issues/">GitHub</a>
      <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editor:
      <dd class="editor p-author h-card vcard"><a class="p-name fn u-email email" href="mailto:mek@chromium.org">Marijn Kruisselbrink</a> (<span class="p-org org">Google</span>)
@@ -1487,7 +1487,7 @@ associated with a <a data-link-type="dfn" href="#trial" id="ref-for-trial-1">tri
 <dfn class="dfn-paneled" data-dfn-type="grammar" data-export="" data-lt="serialized-trial-token" id="grammardef-serialized-trial-token">serialized-trial-token<span class="dfn-panel" data-deco=""><b><a href="#grammardef-serialized-trial-token">#grammardef-serialized-trial-token</a></b><b>Referenced in:</b><span><a href="#ref-for-grammardef-serialized-trial-token-1">2.1. The Origin-Trial HTTP Response Header Field</a></span><span><a href="#ref-for-grammardef-serialized-trial-token-2">3.1. Initialize a Document's trial token list</a></span><span><a href="#ref-for-grammardef-serialized-trial-token-3">3.2. Initialize a WorkerGlobalScope's trial token list</a></span></span></dfn> = <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">token</a> | <a data-link-type="grammar" href="https://tools.ietf.org/html/rfc7230#section-3.2.6">quoted-string</a>
 </pre>
    <div class="example" id="example-cb51090b">
-    <a class="self-link" href="#example-cb51090b"></a> 
+    <a class="self-link" href="#example-cb51090b"></a>
 <pre><a data-link-type="dfn" href="#origin-trial" id="ref-for-origin-trial-1">Origin-Trial</a>: some-token, some|other|token
 <a data-link-type="dfn" href="#origin-trial" id="ref-for-origin-trial-2">Origin-Trial</a>: yet_another_token
 </pre>
@@ -1496,7 +1496,7 @@ associated with a <a data-link-type="dfn" href="#trial" id="ref-for-trial-1">tri
    <h3 class="heading settled" data-level="2.2" id="meta-tag"><span class="secno">2.2. </span><span class="content">The <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta">meta</a></code> element</span><a class="self-link" href="#meta-tag"></a></h3>
    <p>A <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document">Document</a></code> may specify <a data-link-type="dfn" href="#trial-token" id="ref-for-trial-token-3">trial tokens</a> via one or more HTML <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta">meta</a></code> elements whose <code><a data-link-type="element-sub" href="https://html.spec.whatwg.org/multipage/semantics.html#attr-meta-http-equiv">http-equiv</a></code> attributes are an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#ascii-case-insensitive">ASCII case-insensitive match</a> for the string <code>"Origin-Trial"</code>. For example:</p>
    <div class="example" id="example-a8e14349">
-    <a class="self-link" href="#example-a8e14349"></a> 
+    <a class="self-link" href="#example-a8e14349"></a>
 <pre class="lang-html highlight"><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Origin-Trial"</span> <span class="na">content=</span><span class="s">"sometoken"</span><span class="nt">></span></pre>
    </div>
    <p>Authors are <em>strongly encouraged</em> to place <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/semantics.html#meta">meta</a></code> elements as early in the dcument as

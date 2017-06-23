@@ -6,8 +6,8 @@ Indent: 2
 Group: personal
 Editor: Marijn Kruisselbrink, Google, mek@chromium.org
 Status: ED
-ED: https://jpchase.github.io/OriginTrials/
-Repository: jpchase/OriginTrials
+ED: https://googlechrome.github.io/OriginTrials/
+Repository: GoogleChrome/OriginTrials
 Abstract: <a biblio data-biblio-type=informative>Doing Science On The Web</a> summarizes the past
   problems in bringing new features to the web platform.
   Briefly, the web needs new features, and iteration yields the best designs and implementations for
