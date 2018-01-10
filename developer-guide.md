@@ -63,7 +63,7 @@ The [experimental feature tracker](available-trials.md) lists all of the current
     - To prevent experimental features from becoming "burned in" to the web platform. With shorter-lived tokens, we can ensure that no site can use a feature for more than a month or two, without checking in with us.
     - To provide an opportunity to collect feedback on features from web developers. We can ask for feedback on each token renewal.
 12. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
-  - No, starting in Chrome M55, we can issue a single token that will match multiple subdomains. These tokens will behave similarly to wildcard matching (like specifying "\*.\<some domain\>"). For example, you can request a token for "example.com", and it will enable the feature on all origins whose suffix matches "example.com", including:
+  - No, we can issue a single token that will match multiple subdomains. These tokens will behave similarly to wildcard matching (like specifying "\*.\<some domain\>"). For example, you can request a token for "example.com", and it will enable the feature on all origins whose suffix matches "example.com", including:
     - a.example.com
     - b.example.com
     - a.b.example.com
@@ -71,4 +71,3 @@ The [experimental feature tracker](available-trials.md) lists all of the current
   - To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain tokens. Specifically, tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/).
   - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
   - You can request a subdomain token by selecting the appropriate checkbox on the [trial signup form](http://bit.ly/OriginTrialSignup)
-  - These tokens will be accepted by earlier versions of Chrome (M54 and earlier). However, for earlier versions, the origin must match the token exactly to enable the feature. That means you can request subdomain tokens now, before Chrome M55 is available as a stable release.
