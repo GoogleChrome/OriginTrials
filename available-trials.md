@@ -1,6 +1,6 @@
 # Current Experimental Features
 
-Sign up to enable any of these features on your origin by filling out [this form](http://bit.ly/OriginTrialSignup).
+Sign up to enable any of these features on your origin by filling out [this form](http://bit.ly/OriginTrialSignup). If you don't know what an origin trial is, check out [the explainer](https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/explainer.md).
 
 | Feature | Description | Timeline |
 | --- | --- | --- |
