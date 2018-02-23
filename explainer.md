@@ -2,7 +2,7 @@
 
 This document describes why we feel it is important to enable browser vendors and standards designers to experiment on the web, and how we believe it is possible to do safely.
 
-_Note: If you’re a developer interested in how to use origin trials, see [this guide](developer-guide.md). New origin trials are announced on [developers.google.com/web/updates](https://developers.google.com/web/updates/), and a list of active trials are [posted here](available-trials.md).
+_Note: If you’re a developer interested in how to use origin trials, see [this guide](developer-guide.md). New origin trials are announced on [developers.google.com/web/updates](https://developers.google.com/web/updates/), and a list of active trials are [posted here](available-trials.md)._
 
 ## The problem
 It is well known that **iteration and fast feedback cycles are key to designing high quality software**. The process of development is one of designing interfaces and abstractions, attempting to use them or have your friends and colleagues use them, realizing they’re leaky or broken, fixing those problems, and then repeating the cycle.
