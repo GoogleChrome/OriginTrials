@@ -35,34 +35,34 @@ The [experimental feature tracker](available-trials.md) lists all of the current
 
 ## FAQ
 
-1. How can I find out about new experiments when they become available?
+### 1. How can I find out about new experiments when they become available?
   - When you register for an origin trial token you will be automatically added to a mailing list. We'll use this list to send high level updates about the origin trials system, including announcing new features.
   - Additionally, we will be posting updates to [developers.google.com/web/updates/](http://developers.google.com/web/updates/) about each new feature that becomes available as an origin trial.
-2. Will all of these experiments ship eventually?
+### 2. Will all of these experiments ship eventually?
   - These are only experiments and there is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
-3. What happens if a large site such as a Google service starts depending on an experimental feature?
+### 3. What happens if a large site such as a Google service starts depending on an experimental feature?
   - Origin trials have a built-in safeguard that automatically disables an experimental feature globally if its usage exceeds 0.5% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.5% of all page loads (as measured by [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity)) may be deprecated.
-4. Isn’t this just vendor prefixing all over again?
+### 4. Isn’t this just vendor prefixing all over again?
   - This topic has been explored in depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa#.94pf1lwmp). A couple of key differences include:
     - These features automatically stop working before they become too broadly adopted.
     - Developers cannot simply copy-paste sample code using an experimental feature, as they must provide a unique trial token obtained via the experimental feature registration signup process (and accept that the feature is going to shortly stop working).
-5. Does this change impact how we think about security or privacy on the web?
+### 5. Does this change impact how we think about security or privacy on the web?
   - No, these experimental features have all been held to the same high privacy and security standards as any Chrome platform feature.
-6. Is there any restriction on which websites can sign up to use experimental features?
+### 6. Is there any restriction on which websites can sign up to use experimental features?
   - Origin trials are available to any website served over HTTPS. Note that there is no policy against specific large sites opting into origin trials, but the system is designed to prevent large populations of the web depending on experimental features. To achieve that, origin trials have a built-in safeguard that automatically limit it globally if its usage exceeds 0.5% of all Chrome page loads. This means that experimental features aren’t suitable for use on large production sites such as the Google home page.
-7. Is there any review process for signing up a website to access an experimental features?
+### 7. Is there any review process for signing up a website to access an experimental features?
   - No. We do not review domain content before generating a token.
-8. Is there a way to only enable an origin trial for some of my users or only some pages on my site?
+### 8. Is there a way to only enable an origin trial for some of my users or only some pages on my site?
   - Yes, origin trials are enabled on a per-page basis.
-9. Will these experiments work in Opera or other web browsers?
+### 9. Will these experiments work in Opera or other web browsers?
   - Not today, but if this model proves to work well then it’s possible that other web browsers may build their own origin trials system. The experimental feature implementations likely won’t be compatible between browsers due to the nature of them being experimental.
-10. Can I request a token for an origin that I don't own?
+### 10. Can I request a token for an origin that I don't own?
   - Yes, you can technically request a token for an origin that you don't own. However, generating the token won't cause the feature to be enabled on that origin - unless it is served in the pages on that origin (either in the \<head\> or as an HTTP header). Also note that these features have held up to the same high security and privacy standards as any other feature in Chrome.
-11. Why do tokens expire before the trial ends?
+### 11. Why do tokens expire before the trial ends?
   - Currently, we issue tokens that expire in 6 weeks. Before a token expires, we'll send you an email to invite you to renew and continue participating in the trial. We issue tokens that expire for a number of reasons, most importantly:
     - To prevent experimental features from becoming "burned in" to the web platform. With shorter-lived tokens, we can ensure that no site can use a feature for more than a month or two, without checking in with us.
     - To provide an opportunity to collect feedback on features from web developers. We can ask for feedback on each token renewal.
-12. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
+### 12. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
   - No, we can issue a single token that will match multiple subdomains. These tokens will behave similarly to wildcard matching (like specifying "\*.\<some domain\>"). For example, you can request a token for "example.com", and it will enable the feature on all origins whose suffix matches "example.com", including:
     - a.example.com
     - b.example.com
