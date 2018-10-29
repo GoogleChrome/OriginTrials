@@ -129,7 +129,7 @@ A {{Document}} may specify <a>trial tokens</a> via one or more HTML <{meta}> ele
   </pre>
 </div>
 
-Authors are <em>strongly encouraged</em> to place <{meta}> elements as early in the dcument as
+Authors are <em>strongly encouraged</em> to place <{meta}> elements as early in the document as
 possible, because tokens in <{meta}> elements are not taken into account for content which precedes
 them. In particular, note that <{script}> executed before the <{meta}> element will not have access
 to <a>trials</a> enabled by tokens in the <{meta}> element.
