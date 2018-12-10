@@ -1,6 +1,6 @@
 # Origin Trials Guide for Web Developers
 
-When an API is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time. Origin trials allow developers to try out new APIs and give feedback on usability, practicality, and effectiveness to the web standards community before a final decision is made about the API design, or even whether we want to proceed with standardizing and enabling the feature by default. Note that when the trial finishes we will contact you with a request to provide this feedback.
+Origin trials allow developers to try out new features and give feedback on usability, practicality, and effectiveness to the web standards community. Your feedback is valuable input into the final decision about the feature design, or even whether we want to proceed with standardizing and enabling the feature by default. When a feature is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time. Note that when the trial finishes we will contact you with a request to provide this feedback.
 
 Once your origin has opted into a trial of an experimental feature you can then build demos and prototypes that your friends and beta testing users can try for the duration of the trial without them needing to flip special flags in Chrome.
 
@@ -28,7 +28,7 @@ Each feature that is available as an origin trial can alternatively be enabled o
 You can get started experimenting with the new feature on `localhost` either by flipping the flag locally or requesting an origin trials token for `localhost`.
 
 ## What is the thinking behind origin trials?
-An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new APIs. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
+An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new features. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
 ## What experimental features are currently available?
 The [experimental feature tracker](available-trials.md) lists all of the currently available features and their experiment timelines.
@@ -39,7 +39,7 @@ The [experimental feature tracker](available-trials.md) lists all of the current
   - When you register for an origin trial token you will be automatically added to a mailing list. We'll use this list to send high level updates about the origin trials system, including announcing new features.
   - Additionally, we will be posting updates to [developers.google.com/web/updates/](http://developers.google.com/web/updates/) about each new feature that becomes available as an origin trial.
 ### 2. Will all of these experiments ship eventually?
-  - These are only experiments and there is a good chance that some of them will never ship as standardized APIs on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
+  - These are only experiments and there is a good chance that some of them will never ship as standardized features on the web. These experimental features are essentially very similar to Chrome flags: an exciting glimpse into one possible future that you can play around with today, and provide feedback for.
 ### 3. What happens if a large site such as a Google service starts depending on an experimental feature?
   - Origin trials have a built-in safeguard that automatically disables an experimental feature globally if its usage exceeds 0.5% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.5% of all page loads (as measured by [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity)) may be deprecated.
 ### 4. Isn’t this just vendor prefixing all over again?
@@ -70,4 +70,4 @@ The [experimental feature tracker](available-trials.md) lists all of the current
     - example.com
   - To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain tokens. Specifically, tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/).
   - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
-  - You can request a subdomain token by selecting the appropriate checkbox on the [trial signup form](http://bit.ly/OriginTrialSignup)
+  - You can request a subdomain token by selecting the appropriate checkbox on the [trial signup form](http://bit.ly/OriginTrialSignup).
