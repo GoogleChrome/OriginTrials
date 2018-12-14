@@ -8,7 +8,7 @@ One of the root causes was that experimental features were available too widely,
 Please see the [explainer](explainer.md) to learn more about the problem, and why origin trials is a good solution.
 
 ## Signing up for an origin trial
-Developers can use [the developer console](https://developers.chrome.com/origintrials/) to request a token to access a feature currently available as an Origin Trial.
+Developers can use the [developer console](https://developers.chrome.com/origintrials/) to request a token to access a feature currently available as an Origin Trial.
 
 ## Contents
 In addition to describing the problem, and solution, you'll find information for implementing features as experiments, participating in experiments, and details about how it works in Chrome.
