@@ -1,3 +1,3 @@
 # Completed Trials
 
-This has moved to [the developer console](https://developers.chrome.com/origintrials/#/trials/complete).
+Information about completed trials is now found in the [developer console](https://developers.chrome.com/origintrials/#/trials/complete).

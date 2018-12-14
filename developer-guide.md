@@ -31,7 +31,7 @@ You can get started experimenting with the new feature on `localhost` either by 
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new features. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
 ## What experimental features are currently available?
-The [experimental feature tracker](https://developers.chrome.com/origintrials/#/trials/active) lists all of the currently available features.
+The [developer console](https://developers.chrome.com/origintrials/#/trials/active) lists all of the currently available features.
 
 ## FAQ
 
@@ -70,4 +70,4 @@ The [experimental feature tracker](https://developers.chrome.com/origintrials/#/
     - example.com
   - To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain tokens. Specifically, tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/).
   - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
-  - You can request a subdomain token by selecting the appropriate checkbox on the trial signup form.
+  - You can request a subdomain token by filling out the appropriate field on the trial signup form.
