@@ -2,7 +2,7 @@
 
 This document describes why we feel it is important to enable browser vendors and standards designers to experiment on the web, and how we believe it is possible to do safely.
 
-_Note: If you’re a developer interested in how to use origin trials, see [this guide](developer-guide.md). New origin trials are announced on [developers.google.com/web/updates](https://developers.google.com/web/updates/), and a list of active trials are [posted here](available-trials.md)._
+_Note: If you’re a developer interested in how to use origin trials, see [this guide](developer-guide.md). New origin trials are announced on [developers.google.com/web/updates](https://developers.google.com/web/updates/), and a list of active trials are [posted here](https://developers.chrome.com/origintrials/#/trials/active)._
 
 ## The problem
 It is well known that **iteration and fast feedback cycles are key to designing high quality software**. The process of development is one of designing interfaces and abstractions, attempting to use them or have your friends and colleagues use them, realizing they’re leaky or broken, fixing those problems, and then repeating the cycle.
@@ -69,7 +69,7 @@ The high-level process for experimental features is:
   - Currently, this is a manual process where a feature is made available for registrations
   - We expect to automate this process, as part of a self-service developer console
 - Web developers register their origin to participate in the trial, and receive a trial token.
-  - Registrations will be collected via a Google form.
+  - Registrations will be collected via the [developer console](https://developers.chrome.com/origintrials/).
   - More details are available in the [developer guide](developer-guide.md).
 - Web developers change their origin to embed the trial token.
   - The token must be embedded in their origin (via \<meta\> tag or HTTP header)
@@ -114,7 +114,7 @@ commonly be used to disable the specific overused feature.
 ### Collecting developer feedback
 One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers.
 
-The primary means for collecting feedback will be structured surveys at the end of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature, collected via a Google form. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
+The primary means for collecting feedback will be structured surveys during the course of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
 
 Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
 
@@ -139,7 +139,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.5% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for use on very large production sites such as the Google home page.
 
 *Is there any review process for signing up a website to access an experimental API?*
-  - No. We do not review domain content before generating a token. The current delay in receiving a token is only due to some automatic processes not yet being available, but we hope to resolve that later this year.
+  - No. We do not review domain content before generating a token.
 
 *Can one large website prevent anyone from accessing an origin trial (either maliciously or inadvertently)?*
   - We automatically disable any experiment that becomes used too broadly to prevent features from being used in production such that we wouldn't feel OK about breaking them. This does make it possible for a site to maliciously or inadvertently disable an experiment although in that case no developers will be depending on the feature in production since it is experimental so the harm is mitigated.

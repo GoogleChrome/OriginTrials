@@ -6,17 +6,17 @@ Once your origin has opted into a trial of an experimental feature you can then 
 
 ## How do I enable an experimental feature on my origin?
 
-You can opt any page on your origin into the trial of an experimental feature by [requesting a token for your origin](http://bit.ly/OriginTrialSignup). After filling out the form, we'll send you an email with your token (you should receive the token within an hour). Until then we encourage you to start developing with the feature by flipping the relevant flag in about:flags.
+You can opt any page on your origin into the trial of an experimental feature by [requesting a token for your origin](https://developers.chrome.com/origintrials/). After signing up for a trial, we will generate a token for your origin.
 
-When you receive the email, it will include the token, which is specific to your origin and requested feature. There are two ways to provide this token on any pages in your origin:
+There are two ways to provide this token on any pages in your origin:
 
 - Add an `origin-trial` \<meta\> tag to the head of any page. For example this may look something like:
 ```
-<meta http-equiv="origin-trial" content="**insert your token as provided in the the email here**">
+<meta http-equiv="origin-trial" content="**insert your token as provided in the developer console**">
 ```
 - If you can configure your server, you can also provide the token on pages using an `Origin-Trial` HTTP header. The resulting response header should look something like:
 ```
-Origin-Trial: **token as provided in the email**
+Origin-Trial: **token as provided in the developer console**
 ```
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
@@ -31,7 +31,7 @@ You can get started experimenting with the new feature on `localhost` either by 
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new features. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
 ## What experimental features are currently available?
-The [experimental feature tracker](available-trials.md) lists all of the currently available features and their experiment timelines.
+The [developer console](https://developers.chrome.com/origintrials/#/trials/active) lists all of the currently available features.
 
 ## FAQ
 
@@ -70,4 +70,4 @@ The [experimental feature tracker](available-trials.md) lists all of the current
     - example.com
   - To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain tokens. Specifically, tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/).
   - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
-  - You can request a subdomain token by selecting the appropriate checkbox on the [trial signup form](http://bit.ly/OriginTrialSignup).
+  - You can request a subdomain token by filling out the appropriate field on the trial signup form.
