@@ -62,7 +62,12 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - Currently, we issue tokens that expire in 6 weeks. Before a token expires, we'll send you an email to invite you to renew and continue participating in the trial. We issue tokens that expire for a number of reasons, most importantly:
     - To prevent experimental features from becoming "burned in" to the web platform. With shorter-lived tokens, we can ensure that no site can use a feature for more than a month or two, without checking in with us.
     - To provide an opportunity to collect feedback on features from web developers. We can ask for feedback on each token renewal.
-### 12. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
+### 12. How do I renew a token that is about to expire/has expired?
+  - You should receive a reminder email to renew the token before it expires. That email includes a link to the registration page in the [developer console](https://developers.chrome.com/origintrials/#/trials/active). You can also go directly to the page in the console, by finding the trial in the list on [My Registrations](https://developers.chrome.com/origintrials/#/trials/my).
+  - On the registration page, you may need to provide feedback before you can renew. Use the Feedback button to complete a survey to provide feedback.
+  - On the registration page, the Renew button will be available when feedback has been provided. Use the Renew button to generate a new token.
+  - Feedback is required to renew tokens, approximately every 6 weeks. If you have multiple origins registered for a trial, we'll only ask you for once per period, rather than for every origin.
+### 13. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
   - No, we can issue a single token that will match multiple subdomains. These tokens will behave similarly to wildcard matching (like specifying "\*.\<some domain\>"). For example, you can request a token for "example.com", and it will enable the feature on all origins whose suffix matches "example.com", including:
     - a.example.com
     - b.example.com
