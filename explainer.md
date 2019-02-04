@@ -94,7 +94,7 @@ Trial tokens are self-contained, verifiable blobs of text, which can safely be e
 
 As above, we've defined a cap that usage of a single experimental feature cannot exceed 0.5% of all Chrome page loads
 
-To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/core/frame/UseCounter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature.
+To enforce these limits, usage for each feature with an active origin trial will be monitored regularly. The primary source of data will be anonymous usage statistics collected by Chrome (i.e. [UseCounter](https://cs.chromium.org/chromium/src/third_party/blink/renderer/core/frame/use_counter.h)). With these usage statistics, we can determine if the limit is exceeded for each feature.
 
 When the usage limits are exceeded for a feature, the feature will be disabled for future use. As features are enabled by self-contained trial tokens, a separate mechanism is needed to revoke/override the access provided by otherwise valid tokens. In general we intend to use:
  - Feature-implemented Finch switches, that we require them to implement, or
@@ -105,7 +105,7 @@ There are further steps we can take if there is some unforseen issue with the ab
     key).
  - Remotely disable the entire Origin Trials framework (disables all features exposed via trials).
 
-All the above mechanisms make use of the existing infrastructure in Chrome to push out information to installed browsers. For the feature-implemented switches, this makes use of the [field trials](https://code.google.com/p/chromium/codesearch#chromium/src/base/metrics/field_trial.h) infrastructure. For the origin trials revocation lists/signing key replacement, this makes use of the infrastructure for component updates.
+All the above mechanisms make use of the existing infrastructure in Chrome to push out information to installed browsers. For the feature-implemented switches, this makes use of the [field trials](https://cs.chromium.org/chromium/src/base/metrics/field_trial.h) infrastructure. For the origin trials revocation lists/signing key replacement, this makes use of the infrastructure for component updates.
 
 Different mechanisms will be used to disable a feature, depending on how the
 usage limits were exceeded. Initially, the feature-implemented switch will most
