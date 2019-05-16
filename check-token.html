@@ -6,6 +6,7 @@
  th { text-align: right; }
  #validity { color: #000; background-color: #8f8; }
  #validity.invalid { color: #fff; background-color: #f00; }
+ #host.hidden { display: none; }
 </style>
 
 <h1>Check an Origin Trial token</h1>
@@ -13,14 +14,18 @@
 <p>
   <label>Paste the token here<br>
     <textarea id="token" placeholder="Token" autofocus cols="50" rows="6"></textarea>
+  </label><br>
+  <label id="host" class="hidden">Paste the host here<br>
+    <textarea id="host-text" placeholder="Host" autofocus cols="50" rows="1"></textarea>
   </label>
 </p>
 
 <table>
   <tr><th>Valid?</th><td><span id="validity"></span></td></tr>
   <tr><th>Version</th><td><span id="version"></span></td></tr>
-  <tr><th>Origin</th><td><span id="origin"></span></td></tr>
+  <tr><th>Origin</th><td><span id="origin"s></span></td></tr>
   <tr><th>Matches Subdomains?</th><td><span id="subdomain"></span></td></tr>
+  <tr><th>Is Host Subdomain?</th><td><span id="host-validity"></span></td></tr>
   <tr><th>Feature</th><td><span id="feature"></span></td></tr>
   <tr><th>Expires</th><td><span id="expiry"></span></td></tr>
 </table>
@@ -41,10 +46,13 @@
  ]);
 
  const tokenElem = document.getElementById("token");
+ const hostElem = document.getElementById("host");
+ const hostTextElem = document.getElementById("host-text");
  const validityElem = document.getElementById("validity");
  const versionElem = document.getElementById("version");
  const originElem = document.getElementById("origin");
  const subdomainElem = document.getElementById("subdomain");
+ const hostValidityElem = document.getElementById("host-validity");
  const featureElem = document.getElementById("feature");
  const expiryElem = document.getElementById("expiry");
 
@@ -53,11 +61,55 @@
 
  const utf8Decoder = new TextDecoder("utf-8", {fatal: true});
 
+ // From https://cs.chromium.org/chromium/src/url/url_util.cc
+ // as of 2019-05-14.
+ function domainIs(canonicalHost, canonicalDomain) {
+   if (typeof canonicalHost !== 'string' || typeof canonicalDomain !== 'string') {
+     return false;
+   }
+
+   if (canonicalHost === "" || canonicalDomain === "") {
+     return false;
+   }
+
+   try {
+     canonicalHost = new URL(canonicalHost).hostname;
+     canonicalDomain = new URL(canonicalDomain).hostname;
+   } catch(e) {
+     return false;
+   }
+
+   let hostLen = canonicalHost.length;
+   if (canonicalHost[canonicalHost.length - 1] === '.' &&
+       canonicalDomain[canonicalDomain.length - 1] !== '.') {
+     --hostLen;
+   }
+
+   if (hostLen < canonicalDomain.length) {
+     return false;
+   }
+
+   const hostFirstPos = hostLen - canonicalDomain.length;
+   const hostSub = canonicalHost.slice(hostFirstPos, hostFirstPos + canonicalDomain.length);
+   if (hostSub !== canonicalDomain) {
+     return false;
+   }
+
+   if (canonicalDomain[0] !== '.' &&
+       hostLen > canonicalDomain.length && canonicalHost[hostFirstPos -1] !== '.') {
+     return false;
+   }
+
+   return true;
+ }
+
  function validate() {
+   hostElem.classList.add("hidden");
    validityElem.textContent = "";
    validityElem.classList.add("invalid");
    originElem.textContent = "";
    subdomainElem.textContent = "";
+   hostValidityElem.textContent = "";
    featureElem.textContent = "";
    expiryElem.textContent = "";
 
@@ -131,6 +183,16 @@
    originElem.textContent = obj.origin;
    subdomainElem.textContent = obj.isSubdomain ? "Yes" : "No";
    featureElem.textContent = obj.feature;
+
+   if (obj.isSubdomain) {
+     hostElem.classList.remove("hidden");
+   }
+
+   const hostElemIsChanged = hostTextElem.value !== hostTextElem.defaultValue;
+   if (obj.isSubdomain && hostElemIsChanged) {
+     hostValidityElem.textContent = domainIs(hostTextElem.value, obj.origin) ? "Yes" : "No";
+   }
+
    let expiry;
    try {
      expiry = parseInt(obj.expiry);
@@ -150,7 +212,9 @@
 
    validityElem.classList.remove("invalid");
    validityElem.textContent = "Valid";
+
  }
 
  tokenElem.oninput = validate;
+ hostElem.oninput = validate;
 </script>
