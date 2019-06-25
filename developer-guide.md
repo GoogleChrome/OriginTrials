@@ -11,10 +11,13 @@ You can opt any page on your origin into the trial of an experimental feature by
 There are two ways to provide this token on any pages in your origin:
 
 - Add an `origin-trial` \<meta\> tag to the head of any page. For example this may look something like:
+
 ```
 <meta http-equiv="origin-trial" content="**insert your token as provided in the developer console**">
 ```
+
 - If you can configure your server, you can also provide the token on pages using an `Origin-Trial` HTTP header. The resulting response header should look something like:
+
 ```
 Origin-Trial: **token as provided in the developer console**
 ```
