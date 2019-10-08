@@ -22,6 +22,8 @@ There are two ways to provide this token on any pages in your origin:
 Origin-Trial: **token as provided in the developer console**
 ```
 
+**NOTE:** You can provide multiple tokens for a given page. Only one valid token is required to enable a trial, any other invalid tokens or non-matching tokens are ignored. You may want to provide multiple tokens if the same page is served to different origins (e.g. example.com, example.ca, etc.). You can add multiple \<meta\> tags to the page, include multiple `Origin-Trial` response headers, or a single `Origin-Trial` response header, with comma-separated tokens.
+
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
 ## How can I experiment with the new feature locally?
