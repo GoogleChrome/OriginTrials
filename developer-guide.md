@@ -22,7 +22,7 @@ There are two ways to provide this token on any pages in your origin:
 Origin-Trial: **token as provided in the developer console**
 ```
 
-**NOTE:** You can provide multiple tokens for a given page. Only one valid token is required to enable a trial, any other invalid tokens or non-matching tokens are ignored. You may want to provide multiple tokens if the same page is served to different origins (e.g. example.com, example.ca, etc.). You can add multiple \<meta\> tags to the page, include multiple `Origin-Trial` response headers, or a single `Origin-Trial` response header, with comma-separated tokens.
+**NOTE:** You can provide multiple tokens for a given page. For more details see [the FAQ entry below](developer-guide.md#can-i-provide-multiple-tokens-on-a-page).
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
@@ -83,3 +83,8 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - You can request a subdomain token by filling out the appropriate field on the trial signup form.
 ### 14. Are there different types of trials?
   - Yes, we've starting using the origin trial infrastructure and console to allow developers to temporarily control Chrome's behavior in different ways. For example, to register for a [temporary extension to Web Components V0 deprecation](https://developers.chrome.com/origintrials/#/view_trial/2431943798780067841). We're also planning to have trials to allow developers to opt-in or opt-out of some Chrome interventions (especially those based on heuristics). Some aspects of these trials may be different, such as the expiry period for tokens. However, all types of trials will be limited in duration - this is not meant as a new mechanism for permanent configuration.
+### 15. Can I provide multiple tokens on a page?
+  - Yes, you can provide multiple tokens for a given page. Only one valid token is required to enable a trial, any other invalid tokens or non-matching tokens are ignored. You may want to provide multiple tokens if the same page is served to different origins (e.g. example.com, example.ca, etc.). You can add multiple tokens in different ways:
+    - Add multiple \<meta\> tags to the page, where each tag contains a single token.
+    - Include multiple `Origin-Trial` response headers, where each header contains a single token.
+    - Include a single `Origin-Trial` response header, with comma-separated tokens.
