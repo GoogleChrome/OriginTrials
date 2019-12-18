@@ -22,7 +22,7 @@ There are two ways to provide this token on any pages in your origin:
 Origin-Trial: **token as provided in the developer console**
 ```
 
-**NOTE:** You can provide multiple tokens for a given page. For more details see [the FAQ entry below](developer-guide.md#can-i-provide-multiple-tokens-on-a-page).
+**NOTE:** You can provide multiple tokens for a given page. For more details see [the FAQ entry below](developer-guide.md#15-can-i-provide-multiple-tokens-on-a-page).
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
