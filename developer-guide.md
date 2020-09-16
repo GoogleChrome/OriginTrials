@@ -25,7 +25,7 @@ Origin-Trial: **token as provided in the developer console**
 **NOTE:** 
 
 - You can provide multiple tokens for a given page. See [Can I provide multiple tokens on a page?](developer-guide.md#15-can-i-provide-multiple-tokens-on-a-page).
-- You can provide tokens programmatically, via script. See [Can I provide tokens by running script?](developer-guide.md#15-can-i-provide-tokens-by-running-script).
+- You can provide tokens programmatically, via script. See [Can I provide tokens by running script?](developer-guide.md#16-can-i-provide-tokens-by-running-script).
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
