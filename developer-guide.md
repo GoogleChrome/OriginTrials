@@ -106,8 +106,9 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
     ```
   - Limitations for tokens injected via script include:
     - The token must match the origin of the page containing the script (i.e. the *first-party*
-    origin). For external scripts (e.g. a \<script src="some origin"\>), the token validation
-    ignores the origin of the script.
+    origin). For external scripts (e.g. included as \<script src="some origin"\>), the token
+    validation ignores the origin of the script. This does not apply to
+    [*third-party* tokens](developer-guide.md#18-how-can-i-enable-an-experimental-feature-as-embedded-content-on-different-domains).
     - The token can usually be injected later in page lifecycle (e.g. after loading), but must be
     injected before any attempt to use the experimental feature, including feature detection. For
     experimental features that are exposed to Javascript, once the token is injected, you'll be
