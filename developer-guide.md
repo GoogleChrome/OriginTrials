@@ -22,7 +22,10 @@ There are two ways to provide this token on any pages in your origin:
 Origin-Trial: **token as provided in the developer console**
 ```
 
-**NOTE:** You can provide multiple tokens for a given page. For more details see [the FAQ entry below](developer-guide.md#15-can-i-provide-multiple-tokens-on-a-page).
+**NOTE:** 
+
+- You can provide multiple tokens for a given page. See [Can I provide multiple tokens on a page?](developer-guide.md#15-can-i-provide-multiple-tokens-on-a-page).
+- You can provide tokens programmatically, via script. See [Can I provide tokens by running script?](developer-guide.md#15-can-i-provide-tokens-by-running-script).
 
 If you have trouble configuring pages with your token, or need other help, please contact us at origin-trials-support@google.com.
 
@@ -88,3 +91,34 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
     - Add multiple \<meta\> tags to the page, where each tag contains a single token.
     - Include multiple `Origin-Trial` response headers, where each header contains a single token.
     - Include a single `Origin-Trial` response header, with comma-separated tokens.
+### 16. Can I provide tokens by running script?
+  - Yes, you can provide tokens programmatically, from a script running on a given page. A token 
+  can be provided by creating and injecting a \<meta\> tag into the head of the page, in the same
+  format as would be provided in HTML markup. For example, using a function like:
+
+    ```
+      function addTrialToken(tokenContents) {
+        const tokenElement = document.createElement('meta');
+        tokenElement.httpEquiv = 'origin-trial';
+        tokenElement.content = tokenContents;
+        document.head.appendChild(tokenElement);
+      }
+    ```
+  - Limitations for tokens injected via script include:
+    - The token must match the origin of the page containing the script (i.e. the *first-party*
+    origin). For external scripts (e.g. a \<script src="some origin"\>), the token validation
+    ignores the origin of the script.
+    - The token can usually be injected later in page lifecycle (e.g. after loading), but must be
+    injected before any attempt to use the experimental feature, including feature detection. For
+    experimental features that are exposed to Javascript, once the token is injected, you'll be
+    able to test for API presence as expected.
+    - There may be expermental features that are not compatible with token injection via script.
+    For example, features that affect the initial loading of page or require configuration via HTTP
+    response headers.
+### 17. Are experimental features enabled in iframes?
+  - Not by default - iframes in a page **do not** inherit the experimental features that are
+  enabled from their containing page. When the page provides a token to enable an experimental
+  feature, that only applies to the top-level document. Each iframe is considered a separate
+  document, and must independently provide a valid token to enable an experimental feature. As
+  well, each iframe must provide a token that matches its own origin, not the origin of the
+  containing page. Finally, this applies to all nested iframes.
