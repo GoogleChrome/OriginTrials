@@ -106,8 +106,9 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
     ```
   - Limitations for tokens injected via script include:
     - The token must match the origin of the page containing the script (i.e. the *first-party*
-    origin). For external scripts (e.g. a \<script src="some origin"\>), the token validation
-    ignores the origin of the script.
+    origin). For external scripts (e.g. included as \<script src="some origin"\>), the token
+    validation ignores the origin of the script. This does not apply to
+    [*third-party* tokens](developer-guide.md#18-how-can-i-enable-an-experimental-feature-as-embedded-content-on-different-domains).
     - The token can usually be injected later in page lifecycle (e.g. after loading), but must be
     injected before any attempt to use the experimental feature, including feature detection. For
     experimental features that are exposed to Javascript, once the token is injected, you'll be
@@ -122,3 +123,20 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   document, and must independently provide a valid token to enable an experimental feature. As
   well, each iframe must provide a token that matches its own origin, not the origin of the
   containing page. Finally, this applies to all nested iframes.
+### 18. How can I enable an experimental feature as embedded content on different domains?
+  - You can enable an experimental feature as embedded content, as long as you have third-party
+  script running in the containing page.
+  - To enable as embedded content, there are two options to request the appropriate tokens(s):
+    1. Register for a token for each target origin.
+        - Available for all trials.
+        - May be feasible if you have a known, short list of the domains that embed your content.
+        - Requires you to provide the correct token from your script, which matches the containing
+        page.
+    2. Register once for a *third-party* token for your own origin.
+        - Currently, available on a limited basis for some trials.
+        - Requests are subject to verification to prevent misuse.
+        - Allows you to use a single token on any embedding page, regardless of its origin.
+        - Requires you to provide the token from a script served from your origin. Inline scripts
+        are not supported.
+  - Your third-party script must provide the appropriate token as described in
+  [Can I provide tokens by running script?](developer-guide.md#16-can-i-provide-tokens-by-running-script).
