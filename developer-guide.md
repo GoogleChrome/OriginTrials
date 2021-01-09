@@ -113,7 +113,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
     injected before any attempt to use the experimental feature, including feature detection. For
     experimental features that are exposed to Javascript, once the token is injected, you'll be
     able to test for API presence as expected.
-    - There may be expermental features that are not compatible with token injection via script.
+    - There may be experimental features that are not compatible with token injection via script.
     For example, features that affect the initial loading of page or require configuration via HTTP
     response headers.
 ### 17. Are experimental features enabled in iframes?
