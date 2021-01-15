@@ -140,7 +140,8 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
         are not supported.
   - Your third-party script must provide the appropriate token as described in
   [Can I provide tokens by running script?](developer-guide.md#16-can-i-provide-tokens-by-running-script).
-  ### 19. Are there any usage limits on experimental features? {#usage-limits}
+  ### 19. Are there any usage limits on experimental features? <a name="usage-limits"/>
+  
   Origin trials have a built-in safeguard that automatically disables an experimental feature if
   its usage exceeds a small percentage of all Chrome page loads. This is designed to prevent
   individual web sites, and large populations of the web, from depending on experimental features.
@@ -154,7 +155,8 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   This means that large production sites can try out experimental features, *but* they must take
   care to limit usage to a suitable portion of their traffic.
 
-  ### 20. What are the options for usage retrictions on tokens? {#usage-restrictions}
+  ### 20. What are the options for usage retrictions on tokens? <a name="usage-restrictions"/>
+  
   By default, tokens are issued without any usage restriction. This means that when a token is
   valid for a page, the experimental feature will always be enabled on that page (assuming it
   hasn't been disabled for exceeding [usage limits](#usage-limits)).
