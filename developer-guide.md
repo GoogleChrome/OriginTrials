@@ -140,3 +140,30 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
         are not supported.
   - Your third-party script must provide the appropriate token as described in
   [Can I provide tokens by running script?](developer-guide.md#16-can-i-provide-tokens-by-running-script).
+  ### 19. Are there any usage limits on experimental features? {#usage-limits}
+  Origin trials have a built-in safeguard that automatically disables an experimental feature if
+  its usage exceeds a small percentage of all Chrome page loads. This is designed to prevent
+  individual web sites, and large populations of the web, from depending on experimental features.
+
+  The standard usage limit for a trial is 0.5% of all Chrome page loads, based on the same
+  statistics as in [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity). The
+  usage is measured in a way to allow for temporary spikes of higher usage. In rare exceptions, a
+  trial may be approved for a higher usage limit, only when necessary to allow for more effective
+  experimentation (e.g. statistical significance requires a larger sample size of page loads).
+
+  This means that large production sites can try out experimental features, *but* they must take
+  care to limit usage to a suitable portion of their traffic.
+
+  ### 20. What are the options for usage retrictions on tokens? {#usage-restrictions}
+  By default, tokens are issued without any usage restriction. This means that when a token is
+  valid for a page, the experimental feature will always be enabled on that page (assuming it
+  hasn't been disabled for exceeding [usage limits](#usage-limits)).
+
+  For some trials, there will be options for different usage restrictions when registering for a
+  token. If available, the choices are:
+
+  - Standard Limit: This is the default behaviour, where the global usage limit is the only
+      restriction (described above).
+  - User Subset: A small percentage of Chrome users will always be excluded from the trial, even
+      when a valid token is provided. The exclusion percentage varies for each trial, but is
+      typically less than 5%.
