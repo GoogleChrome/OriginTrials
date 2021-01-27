@@ -189,7 +189,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - Tokens without any feedback in the past 6 weeks will automatically be disabled by a remote
       update process after a grace period.
   - We will send a last warning email before disabling the token. This will be your last chance
-      to provide feedback and keep the token active. After that your token will stop working on
+      to provide feedback and keep the token active. After that your token will no longer be accepted by
       Chrome, and will not enable the experimental feature on any page.
   - You can still provide feedback after the token is disabled. However, the token will not be
       re-enabled immediately, even though the _Valid Until_ date is updated. The process to disable
