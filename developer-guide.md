@@ -71,7 +71,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
       expiration date and cannot be updated, so you must renew to generate a new token in this
       case. We'll also send you an email to invite you to renew and continue participating in the
       trial.
-  - Prior to Jan 27, 2021, tokens were issued to be short-lived, lasting 6 weeks until they expire. 
+  - Prior to January 27, 2021, tokens were issued to be short-lived, lasting 6 weeks until they expire. 
       Please see [How do I renew a token that is about to expire/has expired?](#12-how-do-i-renew-a-token-that-is-about-to-expirehas-expired) for how to renew your tokens 
       to continue participating in the trial.
 ### 12. How do I renew a token that is about to expire/has expired?
@@ -179,18 +179,18 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - User Subset: A small percentage of Chrome users will always be excluded from the trial, even
       when a valid token is provided. The exclusion percentage varies for each trial, but is
       typically less than 5%.
-  ### 21. What does the _Valid Until_ date mean for my tokens?
-  - Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. It is calculated
+  ### 21. What does the _Valid Until_ date mean for my tokens?  <a name="valid-until"/>
+  - Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. This date is calculated
       based on your feedback, initially set to 6 weeks after the token is created.
   - Feedback is required every 6 weeks to extend the _Valid Until_ date in order to keep
       participating in the trial. 
   - Before the _Valid Until_ date arrives, we'll send an email to invite you to provide feedback
       and continue participating in the trial.
-  - Tokens without any feedback in the past 6 weeks will automatically be disabled via remote
-      processes after a grace period.
+  - Tokens without any feedback in the past 6 weeks will automatically be disabled by a remote
+      update process after a grace period.
   - We will send a last warning email before disabling the token. This will be your last chance
       to provide feedback and keep the token active. After that your token will stop working on
-      Chrome.
+      Chrome, and will not enable the experimental feature on any page.
   - You can still provide feedback after the token is disabled. However, the token will not be
       re-enabled immediately, even though the _Valid Until_ date is updated. The process to disable
       and re-enable tokens runs periodically, and it takes some time for the remote updates to
@@ -203,7 +203,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
         required to extend the lifespan of the token.
     - To ensure active trial participants can benefit from the trial without the overhead of
         repeatedly deploying new tokens.
-### 22. How do I keep my tokens active for the entire trial?
+### 22. How do I keep my tokens active for the entire trial? <a name="valid-until-feedback"/>
   - On the registration page, you can provide feedback for the trial. Use the Feedback button to
       complete a survey to provide feedback.
   - Providing feedback will extend the Valid Until date by 6 weeks. You will see the updated
