@@ -72,9 +72,9 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
       case. We'll also send you an email to invite you to renew and continue participating in the
       trial.
   - Prior to January 27, 2021, tokens were issued to be short-lived, lasting 6 weeks until they expire. 
-      Please see [How do I renew a token that is about to expire/has expired?](#12-how-do-i-renew-a-token-that-is-about-to-expirehas-expired) for how to renew your tokens 
+      Please see [How do I renew a token that is about to expire/has expired?](#renew) for how to renew your tokens 
       to continue participating in the trial.
-### 12. How do I renew a token that is about to expire/has expired?
+### 12. How do I renew a token that is about to expire/has expired? <a name="renew"></a>
   - You should receive a reminder email to renew the token before it expires. That email includes a 
       link to the registration page in the [developer console](https://developers.chrome.com/origintrials/#/trials/active).
       You can also go directly to the page in the console, by finding the trial in the list on
@@ -165,7 +165,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   This means that large production sites can try out experimental features, *but* they must take
   care to limit usage to a suitable portion of their traffic.
 
-  ### 20. What are the options for usage retrictions on tokens? <a name="usage-restrictions"/>
+  ### 20. What are the options for usage retrictions on tokens? <a name="usage-restrictions"></a>
   
   By default, tokens are issued without any usage restriction. This means that when a token is
   valid for a page, the experimental feature will always be enabled on that page (assuming it
@@ -179,7 +179,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - User Subset: A small percentage of Chrome users will always be excluded from the trial, even
       when a valid token is provided. The exclusion percentage varies for each trial, but is
       typically less than 5%.
-  ### 21. What does the _Valid Until_ date mean for my tokens?  <a name="valid-until"/>
+  ### 21. What does the _Valid Until_ date mean for my tokens?  <a name="valid-until"></a>
   - Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. This date is calculated
       based on your feedback, initially set to 6 weeks after the token is created.
   - Feedback is required every 6 weeks to extend the _Valid Until_ date in order to keep
@@ -203,7 +203,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
         required to extend the lifespan of the token.
     - To ensure active trial participants can benefit from the trial without the overhead of
         repeatedly deploying new tokens.
-### 22. How do I keep my tokens active for the entire trial? <a name="valid-until-feedback"/>
+### 22. How do I keep my tokens active for the entire trial? <a name="valid-until-feedback"></a>
   - On the registration page, you can provide feedback for the trial. Use the Feedback button to
       complete a survey to provide feedback.
   - Providing feedback will extend the Valid Until date by 6 weeks. You will see the updated
