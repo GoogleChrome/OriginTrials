@@ -71,7 +71,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
       expiration date and cannot be updated, so you must renew to generate a new token in this
       case. We'll also send you an email to invite you to renew and continue participating in the
       trial.
-  - Prior to January 27, 2021, tokens were issued to be short-lived, lasting 6 weeks until they expire. 
+  - Prior to February 3rd, 2021, tokens were issued to be short-lived, lasting 6 weeks until they expire. 
       Please see [How do I renew a token that is about to expire/has expired?](#renew) for how to renew your tokens 
       to continue participating in the trial.
 ### 12. How do I renew a token that is about to expire/has expired? <a name="renew"></a>
