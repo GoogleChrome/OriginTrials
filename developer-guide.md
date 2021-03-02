@@ -57,8 +57,8 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
 ### 5. Does this change impact how we think about security or privacy on the web?
   - No, these experimental features have all been held to the same high privacy and security standards as any Chrome platform feature.
 ### 6. Is there any restriction on which websites can sign up to use experimental features?
-  - Origin trials are available to any website served over HTTPS. Note that there is no policy against specific large sites opting into origin trials, but the system is designed to prevent large populations of the web depending on experimental features. To achieve that, origin trials have a built-in safeguard that automatically limit it globally if its usage exceeds 0.5% of all Chrome page loads. This means that experimental features aren’t suitable for use on large production sites such as the Google home page.
-### 7. Is there any review process for signing up a website to access an experimental features?
+  - Origin trials are available to any website served over HTTPS. Note that there is no policy against specific large sites opting into origin trials, but the system is designed to prevent large populations of the web depending on experimental features. To achieve that, origin trials have a built-in safeguard that automatically limits it globally if its usage exceeds 0.5% of all Chrome page loads. This means that experimental features aren’t suitable for use on large production sites such as the Google home page.
+### 7. Is there any review process for signing up a website to access an experimental feature?
   - No. We do not review domain content before generating a token.
 ### 8. Is there a way to only enable an origin trial for some of my users or only some pages on my site?
   - Yes, origin trials are enabled on a per-page basis.
@@ -95,7 +95,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
   - You can request a subdomain token by filling out the appropriate field on the trial signup form.
 ### 14. Are there different types of trials?
-  - Yes, we've starting using the origin trial infrastructure and console to allow developers to temporarily control Chrome's behavior in different ways. For example, to register for a [temporary extension to Web Components V0 deprecation](https://developers.chrome.com/origintrials/#/view_trial/2431943798780067841). We're also planning to have trials to allow developers to opt-in or opt-out of some Chrome interventions (especially those based on heuristics). Some aspects of these trials may be different, such as the expiry period for tokens. However, all types of trials will be limited in duration - this is not meant as a new mechanism for permanent configuration.
+  - Yes, we've started using the origin trial infrastructure and console to allow developers to temporarily control Chrome's behavior in different ways. For example, to register for a [temporary extension to Web Components V0 deprecation](https://developers.chrome.com/origintrials/#/view_trial/2431943798780067841). We're also planning to have trials to allow developers to opt-in or opt-out of some Chrome interventions (especially those based on heuristics). Some aspects of these trials may be different, such as the expiry period for tokens. However, all types of trials will be limited in duration - this is not meant as a new mechanism for permanent configuration.
 ### 15. Can I provide multiple tokens on a page?
   - Yes, you can provide multiple tokens for a given page. Only one valid token is required to enable a trial, any other invalid tokens or non-matching tokens are ignored. You may want to provide multiple tokens if the same page is served to different origins (e.g. example.com, example.ca, etc.). You can add multiple tokens in different ways:
     - Add multiple \<meta\> tags to the page, where each tag contains a single token.
@@ -119,12 +119,12 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
     origin). For external scripts (e.g. included as \<script src="some origin"\>), the token
     validation ignores the origin of the script. This does not apply to
     [*third-party* tokens](developer-guide.md#18-how-can-i-enable-an-experimental-feature-as-embedded-content-on-different-domains).
-    - The token can usually be injected later in page lifecycle (e.g. after loading), but must be
+    - The token can usually be injected later in the page lifecycle (e.g. after loading), but must be
     injected before any attempt to use the experimental feature, including feature detection. For
-    experimental features that are exposed to Javascript, once the token is injected, you'll be
+    experimental features that are exposed to JavaScript, once the token is injected, you'll be
     able to test for API presence as expected.
     - There may be experimental features that are not compatible with token injection via script.
-    For example, features that affect the initial loading of page or require configuration via HTTP
+    For example, features that affect the initial loading of a page or require configuration via HTTP
     response headers.
 ### 17. Are experimental features enabled in iframes?
   - Not by default - iframes in a page **do not** inherit the experimental features that are
@@ -165,7 +165,7 @@ The [developer console](https://developers.chrome.com/origintrials/#/trials/acti
   This means that large production sites can try out experimental features, *but* they must take
   care to limit usage to a suitable portion of their traffic.
 
-  ### 20. What are the options for usage retrictions on tokens? <a name="usage-restrictions"></a>
+  ### 20. What are the options for usage restrictions on tokens? <a name="usage-restrictions"></a>
   
   By default, tokens are issued without any usage restriction. This means that when a token is
   valid for a page, the experimental feature will always be enabled on that page (assuming it
