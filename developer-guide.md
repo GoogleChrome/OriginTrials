@@ -260,3 +260,11 @@ token. If available, the choices are:
     _Valid Until_ date on the registration page after you submit the feedback. If you have
     multiple origins registered for a trial, we'll only ask you for once per period, rather than
     for every origin.
+
+<a name="verification"></a>
+### 23. How are tokens verified?
+Tokens are self-contained and verified by Chrome on-device, without any server calls or network access.  
+
+<a name="performance-impact"></a>
+### 24. Does token verification have a performance impact?
+Verifying a token requires some parsing/decoding of the token, and a crypto call, but the performance impact is unlikely to be observable on any page.
