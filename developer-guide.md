@@ -162,6 +162,7 @@ able to test for API presence as expected.
 For example, features that affect the initial loading of a page or require configuration via HTTP
   response headers.
 
+<a name="iframes"></a>
 ### 17. Are experimental features enabled in iframes?
 
 Not by default — iframes in a page **do not** inherit the experimental features that are
@@ -170,6 +171,17 @@ feature, that only applies to the top-level document. Each iframe is considered 
 document, and must independently provide a valid token to enable an experimental feature. As
 well, each iframe must provide a token that matches its own origin, not the origin of the
 containing page. Finally, this applies to all nested iframes.
+
+The behavior is different when the origin trial enables an experimental feature that is
+also controlled by
+[Permission Policy](https://w3c.github.io/webappsec-permissions-policy/#features).
+Some policy-controlled features must be delegated to an iframe from its parent (see
+[How is a Policy Specified?](https://github.com/w3c/webappsec-permissions-policy/blob/main/permissions-policy-explainer.md#how-is-a-policy-specified)
+in the explainer). For delegation to work, both the parent and the iframe must provide a
+valid token to enable the experimental feature.
+
+TODO: If a policy doesn't need delegation, and is specified only by HTTP header in the iframe,
+does the parent still to enable the trial?
 
 ### 18. How can I enable an experimental feature as embedded content on different domains?
 
@@ -218,7 +230,7 @@ hasn't been disabled for exceeding [usage limits](#usage-limits)).
 For some trials, there will be options for different usage restrictions when registering for a
 token. If available, the choices are:
 
-- Standard Limit: This is the default behaviour, where the global usage limit is the only
+- Standard Limit: This is the default behavior, where the global usage limit is the only
     restriction (described above).
 - User Subset: A small percentage of Chrome users will always be excluded from the trial, even
     when a valid token is provided. The exclusion percentage varies for each trial, but is
