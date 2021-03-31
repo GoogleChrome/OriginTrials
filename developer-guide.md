@@ -180,9 +180,6 @@ Some policy-controlled features must be delegated to an iframe from its parent (
 in the explainer). For delegation to work, both the parent and the iframe must provide a
 valid token to enable the experimental feature.
 
-TODO: If a policy doesn't need delegation, and is specified only by HTTP header in the iframe,
-does the parent still to enable the trial?
-
 ### 18. How can I enable an experimental feature as embedded content on different domains?
 
 - You can enable an experimental feature as embedded content, as long as you have third-party
