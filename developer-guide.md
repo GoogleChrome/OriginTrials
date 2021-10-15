@@ -4,6 +4,8 @@ Origin trials allow developers to try out new features and give feedback on usab
 
 Once your origin has opted into a trial of an experimental feature you can then build demos and prototypes that your friends and beta testing users can try for the duration of the trial without them needing to flip special flags in Chrome.
 
+You can also run limited in-production experiments to evaluate the effictiveness of a feature at-scale. Just be careful to limit the amount of traffic included in the trial as the trial will automatically disable if it is used in more than 0.5% of Chrome page loads. This is part of the protections in place to prevent the feature from becoming a defacto standard before the experimentation and standards work have completed.
+
 ## How do I enable an experimental feature on my origin?
 
 You can opt any page on your origin into the trial of an experimental feature by [requesting a token for your origin](https://developers.chrome.com/origintrials/). After signing up for a trial, we will generate a token for your origin.
@@ -35,6 +37,8 @@ Each feature that is available as an origin trial can alternatively be enabled o
 
 You can get started experimenting with the new feature on `localhost` either by flipping the flag locally or requesting an origin trial token for `localhost`.
 
+You can enable the feature in automation for testing as well using a command-line flag to enable to corresponding flag: ```--enable-blink-features=xxxxx```.
+
 ## What is the thinking behind origin trials?
 An exploration of the motivations and reasoning behind origin trials is provided in [the explainer](explainer.md). The TL;DR is that we strongly value the feedback of real web developers (that means you!) during the process of designing and standardizing new features. We believe origin trials provide a good way of encouraging that feedback, while being extremely careful that the experiments aren’t used by sites in production-critical roles or as if they’re finalized features.
 
@@ -56,6 +60,8 @@ These are only experiments and there is a good chance that some of them will nev
 
 Origin trials have a built-in safeguard that automatically disables an experimental feature globally if its usage exceeds 0.5% of all Chrome page loads. This is to keep usage limited to developers experimenting and below Chrome’s threshold whereby features used on less than 0.5% of all page loads (as measured by [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity)) may be deprecated.
 
+For very popular sites it is important to experiment with origin trials on a small portion of your traffic until the final feature ships.
+
 ### 4. Isn’t this just vendor prefixing all over again?
 
 This topic has been explored in depth in Alex Russell’s Medium post [Doing Science on the Web](https://medium.com/@slightlylate/doing-science-on-the-web-af26d9be2faa#.94pf1lwmp). A couple of key differences include:
@@ -69,7 +75,7 @@ No, these experimental features have all been held to the same high privacy and 
 
 ### 6. Is there any restriction on which websites can sign up to use experimental features?
 
-Origin trials are available to any website served over HTTPS. Note that there is no policy against specific large sites opting into origin trials, but the system is designed to prevent large populations of the web depending on experimental features. To achieve that, origin trials have a built-in safeguard that automatically limits it globally if its usage exceeds 0.5% of all Chrome page loads. This means that experimental features aren’t suitable for use on large production sites such as the Google home page.
+Origin trials are available to any website served over HTTPS. Note that there is no policy against specific large sites opting into origin trials, but the system is designed to prevent large populations of the web depending on experimental features. To achieve that, origin trials have a built-in safeguard that automatically limits it globally if its usage exceeds 0.5% of all Chrome page loads. This means that experimental features aren’t suitable for full production use on large production sites such as the Google home page though experiments that limit the feature usage on such large sites is encouraged.
 
 ### 7. Is there any review process for signing up a website to access an experimental feature?
 

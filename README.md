@@ -5,6 +5,8 @@ Briefly, the web needs new features, and iteration yields the best designs and i
 
 One of the root causes was that experimental features were available too widely, and thus usage grew unchecked as a result. Ideally, it should be easier to expose and iterate on new features, but reliably limit the experimental population. With a test population of developers committed to providing feedback, and limits in user base size and experiment duration, iteration can happen faster, but without the risk of burn-in.
 
+The origin trial feature is still security-reviewed, tested and launched as a production feature, just time and usage limited to allow for evolving the feature with developer feedback, minimizing the risk of it prematurely becoming a defacto standard.
+
 Please see the [explainer](explainer.md) to learn more about the problem, and why origin trials is a good solution.
 
 ## Signing up for an origin trial
