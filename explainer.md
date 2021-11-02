@@ -34,7 +34,7 @@ This experience makes it clear that **any system to enable experimentation shoul
 
 Conversely, for unsuccessful features we should ensure that any system to enable experimentation prevents designs we later regret from being baked into the web.
 
-The risks don’t stop there though. Assuming we did ship a feature experimentally, how can we prevent one large company from adopting it and relying on it at-scale, making deprecation or changes to the feature much more difficult? How can we ensure experimental features maintain our high privacy and security standards?
+The risks don’t stop there though. Assuming we did ship a feature experimentally, how can we prevent one large company from adopting it and relying on it at scale, making deprecation or changes to the feature much more difficult? How can we ensure experimental features maintain our high privacy and security standards?
 
 ## A sketch of a solution
 When reflecting on the problem we outlined earlier, it’s clear that we can’t change the fact that web browser engineers are fundamentally different people to web developers. For that reason, we focused our design efforts on coming up with a safe way to encourage web developers to try new features and provide us feedback while maintaining our ability to modify designs, ensure successful experiments result in eventual interoperability and ensure unsuccessful experiments are not baked into production websites.
@@ -50,7 +50,7 @@ This design is expanded in detail later, but first consider how this satisfies t
 - **Ensuring unsuccessful experiments are not baked into production websites:** These experimental APIs will all stop working within a few months and developers will be very aware of this when they sign up.
 
 And when considering those additional risks we were worried about:
-- **Preventing premature at-scale use from forcing us to keep an experimental feature available:** The automatic usage limiting minimizes the ability for major properties to rely on a feature before it is fully developed, and the time-limited design means that inaction results in the feature reverting.
+- **Preventing premature production use from forcing us to keep an experimental feature available:** The automatic usage limiting minimizes the ability for major properties to rely on a feature before it is shipped, and the time-limited design means that inaction results in the feature reverting.
 - **Maintaining our high privacy and security standards:** Features launched as origin trials are only experimental in terms of their syntax and semantics. Otherwise these are features going out to actual end users, and as such will go through Chrome’s standard launch process the same as any other feature to ensure a high bar for privacy and security is maintained.
 
 This design also has the additional benefit that developers cannot simply copy paste code using experimental APIs from Stack Overflow as was possible with prefixes.
