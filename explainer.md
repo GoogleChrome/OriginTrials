@@ -34,7 +34,7 @@ This experience makes it clear that **any system to enable experimentation shoul
 
 Conversely, for unsuccessful features we should ensure that any system to enable experimentation prevents designs we later regret from being baked into the web.
 
-The risks don’t stop there though. Assuming we did ship a feature experimentally, how can we prevent one large company from adopting it and then force us into a game of high stakes deprecation chicken? How can we ensure experimental features maintain our high privacy and security standards?
+The risks don’t stop there though. Assuming we did ship a feature experimentally, how can we prevent one large company from adopting it and relying on it at scale, making deprecation or changes to the feature much more difficult? How can we ensure experimental features maintain our high privacy and security standards?
 
 ## A sketch of a solution
 When reflecting on the problem we outlined earlier, it’s clear that we can’t change the fact that web browser engineers are fundamentally different people to web developers. For that reason, we focused our design efforts on coming up with a safe way to encourage web developers to try new features and provide us feedback while maintaining our ability to modify designs, ensure successful experiments result in eventual interoperability and ensure unsuccessful experiments are not baked into production websites.
@@ -44,13 +44,13 @@ We believe these constraints are solvable with ‘origin trials’. **In summary
 - Usage of these experiments is constrained to remain below Chrome’s deprecation threshold (< 0.5% of all Chrome page loads) by a system which automatically disables the experiment on all origins if this threshold is exceeded.
 
 This design is expanded in detail later, but first consider how this satisfies the constraints we outlined earlier:
-- **Encouraging developers to try features and provide feedback:** This system allows us to effectively communicate with these developers for the first time, and we believe the ability to use new features to build demos and prototypes that can be shared with friends, Twitter and beta testers will compel developers to try out these features.
-- **Maintaining our ability to change our implementation:** The time-limited nature of an origin trial means that these features will self destruct after a few months whatever happens. This gives us clear cover for making breaking changes. Additionally, no large site can use these features in production thanks to the usage constraint, so we cannot be pressured into extending origin trials by powerful parties.
+- **Encouraging developers to try features and provide feedback:** This system allows us to effectively communicate with these developers for the first time, and we believe the ability to use new features to build demos and prototypes that can be shared with friends, Twitter and beta testers will compel developers to try out these features. Production sites could run limited experiments to gauge the impact of a feature and provide that data as part of the feedback to the feature teams.
+- **Maintaining our ability to change our implementation:** The time-limited nature of an origin trial means that these features will self destruct after a few months whatever happens. This gives us clear cover for making breaking changes. Additionally, no large site can rely on these features for their full production traffic thanks to the usage constraint, so there is minimal risk in causing it to become a defacto-standard prematurely.
 - **Ensuring successful experiments result in eventual interoperability:** Developers will be very aware that the trial they signed up for will end soon, and that their site must therefore rely on proper feature detection (and degrade gracefully without the feature). Assuming the feature is a success we can then communicate any breaking changes to these developers, who can then make the changes and have the feature work with the finalized syntax.
 - **Ensuring unsuccessful experiments are not baked into production websites:** These experimental APIs will all stop working within a few months and developers will be very aware of this when they sign up.
 
 And when considering those additional risks we were worried about:
-- **Preventing one large company from forcing us to keep an experimental feature available:** The automatic usage limiting minimizes the ability for major properties to attempt to force our hand, and the time-limited design means that inaction results in the desirable outcome.
+- **Preventing premature production use from forcing us to keep an experimental feature available:** The automatic usage limiting minimizes the ability for major properties to rely on a feature before it is shipped, and the time-limited design means that inaction results in the feature reverting.
 - **Maintaining our high privacy and security standards:** Features launched as origin trials are only experimental in terms of their syntax and semantics. Otherwise these are features going out to actual end users, and as such will go through Chrome’s standard launch process the same as any other feature to ensure a high bar for privacy and security is maintained.
 
 This design also has the additional benefit that developers cannot simply copy paste code using experimental APIs from Stack Overflow as was possible with prefixes.
@@ -136,7 +136,7 @@ Beyond surveys, we hope that developers will participate in the community around
   - No, these experimental APIs will all be approved as safe by Chrome’s privacy and security teams.
 
 *Is there any restriction on which websites can sign up to use experimental APIs?*
-  - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.5% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for use on very large production sites such as the Google home page.
+  - No, any website can sign up to use an experimental API. The only thing to note is that an experiment will be automatically shut off for all domains if it becomes used on more than 0.5% of all Chrome page loads, which means, unsurprisingly, experimental APIs aren’t suitable for full-production use on very large production sites such as the Google home page. Limited experimental use on very large production sites is encouraged, just not a full launch until the feature itself is no longer experimental.
 
 *Is there any review process for signing up a website to access an experimental API?*
   - No. We do not review domain content before generating a token.
