@@ -214,6 +214,10 @@ Origin trials have a built-in safeguard that automatically disables an experimen
 its usage exceeds a small percentage of all Chrome page loads. This is designed to prevent
 individual web sites, and large populations of the web, from depending on experimental features.
 
+Deprecation trials are not subject to such limits as they are not introducing a new feature and
+therefore there is no risk of depending on experimental features. Similarly, trials where
+existing functionality is removed are not constrained as the same risk doesn not apply.
+
 The standard usage limit for a trial is 0.5% of all Chrome page loads, based on the same
 statistics as in [Chrome Status](https://www.chromestatus.com/metrics/feature/popularity). The
 usage is measured in a way to allow for temporary spikes of higher usage. In rare exceptions, a
