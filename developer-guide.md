@@ -124,7 +124,7 @@ Yes, you can technically request a token for an origin that you don't own. Howev
   - b.example.com
   - a.b.example.com
   - example.com
-- To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain tokens. Specifically, subdomain-matching tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/). Note that this restriction does not pertain to deprecation trials, where subdomain-matching tokens can still be issued for PSL origins.
+- To ensure that an experimental feature is not enabled too broadly, there are some additional checks on requests for subdomain-matching tokens. Specifically, subdomain-matching tokens will not be issued for origins found in the [Public Suffix List](https://publicsuffix.org/). This restriction does not apply to deprecation trials, where subdomain-matching tokens are issued for all origins, regardless if they are found in the Public Suffix List.
 - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
 - You can request a subdomain token by filling out the appropriate field on the trial signup form.
 
