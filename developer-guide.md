@@ -81,7 +81,7 @@ Origin trials are available to any website served over HTTPS. Note that there is
 
 In most cases, no. We do not review domain content before generating a token.
 
-In some cases, participation in an origin trial requires additional criteria be met before a token is generated. During the registration process, a link to the the trial's participation criteria will be available before submission. Once your registration request is submitted, you will be provided with a link to your petition for participation. Additional information may be needed to verify your participation criteria is met. You will be notified by email of any changes to your origin trial participation request.
+Participation in a trial may require additional criteria to be met before a token is generated. During the registration process, a link to the trial's participation criteria will be available before submission. Once your registration request is submitted, you will be provided with a link to your petition for participation. Additional information may be needed to verify your participation criteria is met. You will be notified by email of any updates to your origin trial participation request.
 
 ### 8. Is there a way to only enable an origin trial for some of my users or only some pages on my site?
 
