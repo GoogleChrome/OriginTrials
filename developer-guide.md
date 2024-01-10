@@ -1,6 +1,6 @@
 # Origin Trials Guide for Web Developers
 
-Origin trials allow developers to try out new features and give feedback on usability, practicality, and effectiveness to the web standards community. Your feedback is valuable input into the final decision about the feature design, or even whether we want to proceed with standardizing and enabling the feature by default. When a feature is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time. Note that when the trial finishes we will contact you with a request to provide this feedback.
+Origin trials allow developers to try out new features and give feedback on usability, practicality, and effectiveness to the web standards community. Your feedback is valuable input into the final decision about the feature design, or even whether we want to proceed with standardizing and enabling the feature by default. When a feature is available as an origin trial, you are able to register to have it enabled for all users on your origin for a fixed period of time.
 
 Once your origin has opted into a trial of an experimental feature you can then build demos and prototypes that your friends and beta testing users can try for the duration of the trial without them needing to flip special flags in Chrome.
 
@@ -110,12 +110,10 @@ Yes, you can technically request a token for an origin that you don't own. Howev
     link to the registration page in the [developer console](https://developers.chrome.com/origintrials/#/trials/active).
     You can also go directly to the page in the console, by finding the trial in the list on
     [My Registrations](https://developers.chrome.com/origintrials/#/trials/my).
-- On the registration page, you may need to provide feedback before you can renew. Use the 
-    Feedback button to complete a survey to provide feedback.
-- On the registration page, the Renew button will be available when feedback has been provided. 
-    Use the Renew button to generate a new token.
-- Feedback is required to renew tokens. If you have multiple origins registered for a trial,
-    we'll only ask you for once per period, rather than for every origin.
+- On the registration page, use the Renew button to generate a new token.
+- Tokens are set to expire only at the end of the registered origin trial. However, in some cases,
+  an origin trial can be extended to a date further than the trial's original end date. In this scenario,
+  a new token must be generated in order to continue uninterrupted participation in the trial.
 
 ### 13. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
 
@@ -246,39 +244,11 @@ token. If available, the choices are:
 <a name="valid-until"></a>
 ### 21. What does the _Valid Until_ date mean for my tokens?  
 
-- Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. This date is calculated
-    based on your feedback, initially set to 6 weeks after the token is created.
-- Feedback is required every 6 weeks to extend the _Valid Until_ date in order to keep
-    participating in the trial. 
-- Before the _Valid Until_ date arrives, we'll send an email to invite you to provide feedback
-    and continue participating in the trial.
-- Tokens without any feedback in the past 6 weeks will automatically be disabled by a remote
-    update process after a grace period.
-- We will send a last warning email before disabling the token. This will be your last chance
-    to provide feedback and keep the token active. After that your token will no longer be accepted by
-    Chrome, and will not enable the experimental feature on any page.
-- You can still provide feedback after the token is disabled. However, the token will not be
-    re-enabled immediately, even though the _Valid Until_ date is updated. The process to disable
-    and re-enable tokens runs periodically, and it takes some time for the remote updates to
-    reach the majority of Chrome clients.
-- We issue tokens this way for a number of reasons, most importantly:
-  - To prevent experimental features from becoming "burned in" to the web platform. With
-      shorter-lived tokens, we can ensure that no site can use a feature for more than a month or
-      two, without checking in with us.
-  - To provide an opportunity to collect feedback on features from web developers. Feedback is
-      required to extend the lifespan of the token.
-  - To ensure active trial participants can benefit from the trial without the overhead of
-      repeatedly deploying new tokens.
-
-<a name="valid-until-feedback"></a>
-### 22. How do I keep my tokens active for the entire trial? 
-
-- On the registration page, you can provide feedback for the trial. Use the Feedback button to
-    complete a survey to provide feedback.
-- Providing feedback will extend the Valid Until date by 6 weeks. You will see the updated
-    _Valid Until_ date on the registration page after you submit the feedback. If you have
-    multiple origins registered for a trial, we'll only ask you for once per period, rather than
-    for every origin.
+- Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. This date is typically
+  identical with the end date of the origin trial. In some instances, the end date of the origin trial
+  is extended from the trial's origin end date. If you would like to continue participating in the
+  origin trial during this additional phase, you will need to generate a new token by selecting
+  the "Renew" button on your registration's detail page.
 
 <a name="verification"></a>
 ### 23. How are tokens verified?
