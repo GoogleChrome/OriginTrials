@@ -241,10 +241,10 @@ token. If available, the choices are:
     when a valid token is provided. The exclusion percentage varies for each trial, but is
     typically less than 5%.
 
-<a name="valid-until"></a>
-### 21. What does the _Valid Until_ date mean for my tokens?  
+<a name="expiry-date"></a>
+### 21. What does the expiry date mean for my tokens?  
 
-Tokens are guaranteed to be accepted by Chrome up to the _Valid Until_ date. This date is typically identical with the end date of the origin trial. In some instances, the end date of the origin trial is extended from the trial's origin end date. If you would like to continue participating in the origin trial during this additional phase, you will need to generate a new token by selecting the "Renew" button on your registration's detail page.
+Tokens are guaranteed to be accepted by Chrome up to the expiry date. This date is typically identical with the end date of the origin trial. In some instances, the end date of the origin trial is extended from the trial's origin end date. If you would like to continue participating in the origin trial during this additional phase, you will need to generate a new token by selecting the "Renew" button on your registration's detail page.
 
 <a name="verification"></a>
 ### 23. How are tokens verified?
