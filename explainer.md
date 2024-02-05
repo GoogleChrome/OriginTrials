@@ -79,7 +79,6 @@ The high-level process for experimental features is:
 - The end date of the trial passes, all issued trial tokens expire, and the framework automatically prevents further access to the feature.
 - Feedback on the feature is requested from all registered developers
   - Feedback may also be solicited earlier, during the trial.
-  - Developers must provide feedback, or will not be able to register for new origin trials.
 
 ### Trial tokens
 
@@ -112,11 +111,7 @@ usage limits were exceeded. Initially, the feature-implemented switch will most
 commonly be used to disable the specific overused feature.
 
 ### Collecting developer feedback
-One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers.
-
-The primary means for collecting feedback will be structured surveys during the course of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
-
-Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
+One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers. We hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
 
 ## FAQ
 
