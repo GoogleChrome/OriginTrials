@@ -239,19 +239,19 @@ token. If available, the choices are:
     when a valid token is provided. The exclusion percentage varies for each trial, but is
     typically less than 5%.
 
+### 22. Do I need to provide feedback for the trial if I request a token?
+
+As of February 12, 2024, submitting feedback for a trial is optional, but encouraged. Over the course of your participation in the trial, you may receive notifications to ask for your feedback on the feature.
+
 <a name="verification"></a>
-### 22. How are tokens verified?
+### 23. How are tokens verified?
 Tokens are self-contained and verified by Chrome on-device, without any server calls or network access.  
 
 <a name="performance-impact"></a>
-### 23. Does token verification have a performance impact?
+### 24. Does token verification have a performance impact?
 Verifying a token requires some parsing/decoding of the token, and a crypto call, but the performance impact is unlikely to be observable on any page.
 
 <a name="expiry-date"></a>
-### 24. What does the expiry date mean for my tokens?  
+### 25. What does the expiry date mean for my tokens?  
 
 Tokens are considered valid by Chrome up to the expiry date. The expiry date is usually the same as the end date of the origin trial. See [Question 11](#token-expiry).
-
-### 25. Do I need to provide feedback for the trial if I request a token?
-
-As of February 12, 2024, submitting feedback for a trial is optional, but encouraged. Over the course of your participation in the trial, you may receive notifications to ask for your feedback on the feature.
