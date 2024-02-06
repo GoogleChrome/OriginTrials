@@ -93,6 +93,7 @@ Not today, but if this model proves to work well then it’s possible that other
 
 Yes, you can technically request a token for an origin that you don't own. However, generating the token won't cause the feature to be enabled on that origin - unless it is served in the pages on that origin (either in the \<head\> or as an HTTP header). Also note that these features have held up to the same high security and privacy standards as any other feature in Chrome.
 
+<a name="token-expiry"></a>
 ### 11. Why do tokens expire before the trial ends?
 
 - The trial may have been extended after your last registration. Each token contains the
@@ -103,23 +104,16 @@ Yes, you can technically request a token for an origin that you don't own. Howev
     Please see [How do I renew a token that is about to expire/has expired?](#renew) for how to renew your tokens 
     to continue participating in the trial.
 
-### 12. Do I need to provide feedback for the trial if I request a token?
-
-As of February 12, 2023, submitting feedback for a trial is optional, but encouraged. Over the course of your participation in the trial, you will receive some notifications by email prompting for your feedback on the feature, along with instructions on how to do so.
-
 <a name="renew"></a>
-### 13. How do I renew a token that is about to expire/has expired? 
+### 12. How do I renew a token that is about to expire/has expired? 
 
 - You should receive a reminder email to renew the token before it expires. That email includes a 
     link to the registration page in the [developer console](https://developers.chrome.com/origintrials/#/trials/active).
     You can also go directly to the page in the console, by finding the trial in the list on
     [My Registrations](https://developers.chrome.com/origintrials/#/trials/my).
 - On the registration page, use the Renew button to generate a new token.
-- Tokens are set to expire only at the end of the registered origin trial. However, in some cases,
-  an origin trial can be extended to a date further than the trial's original end date. In this scenario,
-  a new token must be generated in order to continue uninterrupted participation in the trial.
 
-### 14. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
+### 13. I have multiple testing/staging domains, or subdomains that are programmatically generated. Do I need to request a token for every subdomain?
 
 - No, we can issue a single token that will match multiple subdomains. These tokens will behave similarly to wildcard matching (like specifying "\*.\<some domain\>"). For example, you can request a token for "example.com", and it will enable the feature on all origins whose suffix matches "example.com", including:
   - a.example.com
@@ -130,18 +124,18 @@ As of February 12, 2023, submitting feedback for a trial is optional, but encour
 - Subdomains do not apply to IP addresses. Tokens issued for IP addresses will only allow exact matching on origin, as before.
 - You can request a subdomain token by filling out the appropriate field on the trial signup form.
 
-### 15. Are there different types of trials?
+### 14. Are there different types of trials?
 
 Yes, we've started using the origin trial infrastructure and console to allow developers to temporarily control Chrome's behavior in different ways. For example, to register for a [temporary extension to Web Components V0 deprecation](https://developers.chrome.com/origintrials/#/view_trial/2431943798780067841). We're also planning to have trials to allow developers to opt-in or opt-out of some Chrome interventions (especially those based on heuristics). Some aspects of these trials may be different, such as the expiry period for tokens. However, all types of trials will be limited in duration - this is not meant as a new mechanism for permanent configuration.
 
-### 16. Can I provide multiple tokens on a page?
+### 15. Can I provide multiple tokens on a page?
 
 Yes, you can provide multiple tokens for a given page. Only one valid token is required to enable a trial, any other invalid tokens or non-matching tokens are ignored. You may want to provide multiple tokens if the same page is served to different origins (e.g. example.com, example.ca, etc.). You can add multiple tokens in different ways:
   - Add multiple \<meta\> tags to the page, where each tag contains a single token.
   - Include multiple `Origin-Trial` response headers, where each header contains a single token.
   - Include a single `Origin-Trial` response header, with comma-separated tokens.
 
-### 17. Can I provide tokens by running script?
+### 16. Can I provide tokens by running script?
 
 Yes, you can provide tokens programmatically, from a script running on a given page. A token 
 can be provided by creating and injecting a \<meta\> tag into the head of the page, in the same
@@ -171,7 +165,7 @@ For example, features that affect the initial loading of a page or require confi
   response headers.
 
 <a name="iframes"></a>
-### 18. Are experimental features enabled in iframes?
+### 17. Are experimental features enabled in iframes?
 
 Not by default — iframes in a page **do not** inherit the experimental features that are
 enabled from their containing page. When the page provides a token to enable an experimental
@@ -188,7 +182,7 @@ Some policy-controlled features must be delegated to an iframe from its parent (
 in the explainer). For delegation to work, both the parent and the iframe must provide a
 valid token to enable the experimental feature.
 
-### 19. How can I enable an experimental feature as embedded content on different domains?
+### 18. How can I enable an experimental feature as embedded content on different domains?
 
 - You can enable an experimental feature as embedded content, as long as you have third-party
 script running in the containing page.
@@ -210,7 +204,7 @@ script running in the containing page.
 [Can I provide tokens by running script?](developer-guide.md#16-can-i-provide-tokens-by-running-script).
 
 <a name="usage-limits"></a>
-### 20. Are there any usage limits on experimental features? 
+### 19. Are there any usage limits on experimental features? 
 
 Origin trials have a built-in safeguard that automatically disables an experimental feature if
 its usage exceeds a small percentage of all Chrome page loads. This is designed to prevent
@@ -230,7 +224,7 @@ This means that large production sites can try out experimental features, *but* 
 care to limit usage to a suitable portion of their traffic.
 
 <a name="usage-restrictions"></a>
-### 21. What are the options for usage restrictions on tokens? 
+### 20. What are the options for usage restrictions on tokens? 
 
 By default, tokens are issued without any usage restriction. This means that when a token is
 valid for a page, the experimental feature will always be enabled on that page (assuming it
@@ -245,15 +239,19 @@ token. If available, the choices are:
     when a valid token is provided. The exclusion percentage varies for each trial, but is
     typically less than 5%.
 
-<a name="expiry-date"></a>
-### 22. What does the expiry date mean for my tokens?  
-
-Tokens are guaranteed to be accepted by Chrome up to the expiry date. This date is typically identical with the end date of the origin trial. In some instances, the end date of the origin trial is extended from the trial's origin end date. If you would like to continue participating in the origin trial during this additional phase, you will need to generate a new token by selecting the "Renew" button on your registration's detail page.
-
 <a name="verification"></a>
-### 23. How are tokens verified?
+### 22. How are tokens verified?
 Tokens are self-contained and verified by Chrome on-device, without any server calls or network access.  
 
 <a name="performance-impact"></a>
-### 24. Does token verification have a performance impact?
+### 23. Does token verification have a performance impact?
 Verifying a token requires some parsing/decoding of the token, and a crypto call, but the performance impact is unlikely to be observable on any page.
+
+<a name="expiry-date"></a>
+### 24. What does the expiry date mean for my tokens?  
+
+Tokens are considered valid by Chrome up to the expiry date. The expiry date is usually the same as the end date of the origin trial. See [Question 11](#token-expiry).
+
+### 25. Do I need to provide feedback for the trial if I request a token?
+
+As of February 12, 2024, submitting feedback for a trial is optional, but encouraged. Over the course of your participation in the trial, you may receive notifications to ask for your feedback on the feature.
