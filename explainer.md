@@ -79,7 +79,6 @@ The high-level process for experimental features is:
 - The end date of the trial passes, all issued trial tokens expire, and the framework automatically prevents further access to the feature.
 - Feedback on the feature is requested from all registered developers
   - Feedback may also be solicited earlier, during the trial.
-  - Developers must provide feedback, or will not be able to register for new origin trials.
 
 ### Trial tokens
 
@@ -112,11 +111,7 @@ usage limits were exceeded. Initially, the feature-implemented switch will most
 commonly be used to disable the specific overused feature.
 
 ### Collecting developer feedback
-One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers.
-
-The primary means for collecting feedback will be structured surveys during the course of each trial. Using surveys will allow feature authors to collect both qualitative and quantitative data about various aspects of their feature, such as the effectiveness and ergonomics in addressing a particular developer pain point. Initially, we'll have a separate survey for each feature. Over time, we expect to provide a consistent survey approach across features. The collected feedback will be anonymized and aggregated, and we'll make a summary of the feedback publicly available.
-
-Beyond surveys, we hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
+One of the main goals of origin trials is to enable browser vendors to collect developer feedback to help iterate on new features. With the registration process, we will be able to establish a communication channel with developers. We hope that developers will participate in the community around each experimental feature. Feedback is always valuable, so we'll encourage developers to provide informal/adhoc feedback during the trial, or join the mailing list/GitHub repo/etc. for each feature.
 
 ## FAQ
 
@@ -146,9 +141,6 @@ Beyond surveys, we hope that developers will participate in the community around
 
 *What is the structure of trial tokens?*
   - The properties and structure of trials tokens are discussed in detail in the [design document](https://docs.google.com/document/d/1qVP2CK1lbfmtIJRIm6nwuEFFhGhYbtThLQPo3CSTtmg/edit#bookmark=id.jtr9rupl4osm).
-
-*What happens to the developer feedback collected in surveys?*
-  - How feedback is collected and shared is outlined [above](explainer.md#collecting-developer-feedback). Note that all data collected is subject to the [Chrome](https://www.google.com/intl/en/chrome/browser/privacy/) and [Google](http://www.google.com/policies/privacy/) privacy policies.
 
 *Why shouldn't browsers just use A/B experimentation techniques to test out web platform features*
   - It's common in software to rely on A/B experiments to compare one design to another.  This isn't appropriate when experimenting with platform API surface area because it would make it extremely difficult for developers to reason about the behavior they're seeing from the platform (making the platform much less predictable).  For example, when a user reports an issue, developers try to match the exact browser version and OS when attempting to reproduce the problem.  When there's some other variable they don't know about (eg. rarely a user will have a special browser flag enabled), it inevitably causes a ton of frustration and confusion.
